@@ -56,6 +56,12 @@
                                 N/A
                               @endif
                             </p>
+
+                            @if(session()->has('success'))
+                              <div class="alert alert-success">
+                                {{ session()->get('success') }}
+                              </div>
+                            @endif
                           </div>
                         </div>
                         
@@ -222,14 +228,14 @@
                               </div>
                               @foreach(Auth::user()->reviews as $val)
                                  <div class="agency-review-box">
-                                     <div>
+                                      <div>
                                         <h5> {{$val->buyer->fname.' '.$val->buyer->lname}} </h5>
                                         <h6> {{$val->created_at->diffForHumans()}}  </h6>
                                         <p> 
                                           <strong>{{$val->description}}</strong>
                                         </p>
-                                     </div>
-                                     <div>
+                                      </div>
+                                      <div>
                                         @for($i=1; $i<=5; $i++)
                                           @if($i <= $val->rating)
                                             <i class="fa fa-star star-onn"> </i>
@@ -237,7 +243,13 @@
                                             <i class="fa fa-star star-off"> </i>
                                           @endif
                                         @endfor
-                                     </div>
+
+                                      </div>
+                                      @if(empty($val->report))
+                                        <a href="javascript:void(0)" class="reportReview" data-id="{{base64_encode($val->id)}}">Report</a>
+                                      @else
+                                        <a href="javascript:void(0)" style="color:red; float: right;">Reported</a>
+                                      @endif
                                  </div>
                               @endforeach
                            </div>

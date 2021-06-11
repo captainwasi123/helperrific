@@ -44,6 +44,12 @@
                                 <li><a href="{{URL::to('/admin/enquiries')}}">All</a></li>
                             </ul>
                         </li>
+                        <li> 
+                            <a class="waves-effect" href="{{URL::to('/admin/reviewReports')}}" aria-expanded="false">
+                                <i class="mdi mdi-block-helper"></i>
+                                <span class="hide-menu">Review Reports</span>
+                            </a>
+                        </li>
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">SETTINGs</li>
                         <li> 

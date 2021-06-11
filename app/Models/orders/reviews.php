@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\Models\User;
+use App\Models\reviewReport;
 
 class reviews extends Model
 {
@@ -28,5 +29,10 @@ class reviews extends Model
     }
     public function seller(){
     	return $this->belongsTo(User::class, 'seller_id');
+    }
+
+
+    public function report(){
+        return $this->belongsTo(reviewReport::class, 'id', 'review_id');
     }
 }

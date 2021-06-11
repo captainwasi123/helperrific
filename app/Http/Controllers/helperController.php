@@ -172,5 +172,6 @@ class helperController extends Controller
 		}else{
 			return redirect('/');
 		}
-	} 
+	}
+
 }

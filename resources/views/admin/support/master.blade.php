@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="host" content="{{URL::to('/admin')}}">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{URL::to('/')}}/assets/images/favicon.png">
     <title>@yield('title') | Admin | Helperrific</title>

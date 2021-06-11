@@ -13,6 +13,7 @@ use App\Models\availability;
 use App\Models\country;
 use App\Models\employer\viewCount;
 use App\Models\employer\reviewInvitation;
+use App\Models\reviewReport;
 
 
 
@@ -338,4 +339,12 @@ class webController extends Controller
 
         return redirect()->back();
     }
+
+    function reportReview($id){
+        $id = base64_decode($id);
+
+        reviewReport::addReport($id);
+
+        return redirect()->back()->with('success', 'Review Reported.');
+    } 
 }

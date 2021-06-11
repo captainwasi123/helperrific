@@ -135,7 +135,7 @@ class User extends Authenticatable
     }
 
     function reviews(){
-        return $this->hasMany(reviews::class, 'seller_id', 'id');
+        return $this->hasMany(reviews::class, 'seller_id', 'id')->where('status', '1');
     }
     public function avgRating()
     {
@@ -145,6 +145,6 @@ class User extends Authenticatable
 
 
     function ereviews(){
-        return $this->hasMany(reviews::class, 'buyer_id', 'id');
+        return $this->hasMany(reviews::class, 'buyer_id', 'id')->where('status', '1');
     }
 }

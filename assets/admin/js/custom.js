@@ -6,6 +6,31 @@ File: js
 */
 $(function () {
     "use strict";
+
+
+
+    var host = $("meta[name='host']").attr("content"); 
+
+    //Review Hide
+    $(document).on('click', '.hideReview', function() {
+        var id = $(this).data('id');
+        if(confirm('Are you sure want to hide this review.?')){
+            window.location.href = host+'/reviewHide/'+id;
+        }
+    });
+
+    //Review Hide
+    $(document).on('click', '.deleteReview', function() {
+        var id = $(this).data('id');
+        if(confirm('Are you sure want to delete this review.?')){
+            window.location.href = host+'/reviewDelete/'+id;
+        }
+    });
+
+
+
+
+
     $(function () {
         $(".preloader").fadeOut();
     });

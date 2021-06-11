@@ -12,6 +12,7 @@
     <script src="{{URL::to('/')}}/assets/admin/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="{{URL::to('/')}}/assets/admin/js/custom.min.js"></script>
+    <script src="{{URL::to('/')}}/assets/admin/js/custom.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->

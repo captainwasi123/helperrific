@@ -203,6 +203,15 @@ $(document).ready(function(){
         }
     });
 
+
+    //Review Report
+    $(document).on('click', '.reportReview', function() {
+        var id = $(this).data('id');
+        if(confirm('Are you sure want to report this review.?')){
+            window.location.href = host+'/reportReview/'+id;
+        }
+    });
+
  });
 
 function readURL(input, pre) {

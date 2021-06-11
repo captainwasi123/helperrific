@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Route;
 		Route::post('/password/change', 'webController@changePassword')->name('change.password');
 
 		Route::get('/reviewInvitation/send/{id}', 'webController@sendInvitation');
+		Route::get('reportReview/{id}', 'webController@reportReview');
 
 	//Premium Account
 		Route::prefix('premium')->group(function(){
@@ -99,6 +100,7 @@ use Illuminate\Support\Facades\Route;
 		Route::post('gallery/upload', 'helperController@galleryUpload');
 
 		Route::get('requests', 'helperController@Orders');
+
 	});
 
 	//Agency
@@ -210,3 +212,10 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/admin/enquiries/detail/{id}', 'enquiryController@enquiryDetail');
 
 		Route::post('/admin/equiries/reply', 'enquiryController@insertReply');
+
+
+	// Review Reports
+
+		Route::get('/admin/reviewReports', 'reviewReportController@index');
+		Route::get('/admin/reviewHide/{id}', 'reviewReportController@hide');
+		Route::get('/admin/reviewDelete/{id}', 'reviewReportController@delete');

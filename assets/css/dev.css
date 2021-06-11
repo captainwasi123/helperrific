@@ -868,6 +868,10 @@ span.time-tag {
     margin-bottom: -40px;
     color: black;
 }
+.reportReview {
+    float: right;
+}
+
 
 
 //suggestions
