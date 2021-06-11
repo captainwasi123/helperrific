@@ -100,3 +100,6 @@ label.input-fields h6 {
     margin-bottom: 5px;
     font-weight: 400 !important;
 }
+.export_fields{
+	display: none;
+}

@@ -17,7 +17,38 @@
                                                 <th>Full Name</th>
                                                 <th>Email</th>
                                                 <th>Country</th>
-                                                <th>Login Source</th>
+                                                <!-- Language -->
+                                                @for($x=0; $x<5; $x++)
+                                                    <th class="export_fields">Language-{{$x+1}}</th>
+                                                @endfor
+
+                                                <!-- Expertise Area -->
+                                                @for($x=0; $x<5; $x++)
+                                                    <th class="export_fields">Expertise-{{$x+1}}</th>
+                                                @endfor
+
+                                                <!-- Skills -->
+                                                @for($x=0; $x<8; $x++)
+                                                    <th class="export_fields">Skills-{{$x+1}}</th>
+                                                @endfor
+
+                                                <!-- Qualification -->
+                                                @for($x=0; $x<4; $x++)
+                                                    <th class="export_fields">Qualification-{{$x+1}}</th>
+                                                @endfor
+
+                                                <!-- Education -->
+                                                @for($x=0; $x<5; $x++)
+                                                    <th class="export_fields">Education/Certificate-{{$x+1}}</th>
+                                                @endfor
+
+                                                <!-- Experience -->
+                                                @for($x=0; $x<5; $x++)
+                                                    <th class="export_fields">Experience-{{$x+1}}</th>
+                                                @endfor
+
+                                                <th>Starting Salary</th>
+                                                <th>Rating</th>
                                                 <th>Status</th>
                                                 <th>Created at</th>
                                                 <th class="noExport">Action</th>
@@ -28,31 +59,61 @@
                                             @foreach($databelt as $data)
                                                 <tr>
                                                     <td>{{$s}}</td>
-                                                    <td>
-                                                        <a target="_blank" href="{{URL::to('/helpers/detail/'.base64_encode($data->id).'/'.$data->fname.' '.$data->lname)}}">
-                                                            <img src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';" alt="user" width="30" class="img-circle"> 
-                                                            {{$data->fname.' '.$data->lname}}
-                                                        </a>
+                                                    <td> 
+                                                        {{$data->fname.' '.$data->lname}}
                                                     </td>
                                                     <td>{{$data->email}}</td>
-                                                    <td>{{empty($data->details) ? '-' : $data->details->country}}</td>
-                                                    <td>
-                                                        <label class="badge badge-default">
-                                                        @switch($data->source)
-                                                            @case('1')
-                                                                    Website
-                                                                @break
+                                                    <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
+                                                    
+                                                    <!-- Language -->
+                                                    @for($x=0; $x<5; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->langs[$x]) ? '' : $data->langs[$x]->language}}
+                                                        </td>
+                                                    @endfor
 
-                                                            @case('2')
-                                                                    Google
-                                                                @break
 
-                                                            @case('3')
-                                                                    Facebook
-                                                                @break
-                                                        @endswitch
-                                                        </label>
-                                                    </td>
+                                                    <!-- Expertise Area -->
+                                                    @for($x=0; $x<5; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->expertise[$x]) ? '' : $data->expertise[$x]->skills->skill}}
+                                                        </td>
+                                                    @endfor
+
+
+                                                    <!-- Skills -->
+                                                    @for($x=0; $x<8; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->skills[$x]) ? '' : $data->skills[$x]->skills->skill}}
+                                                        </td>
+                                                    @endfor
+
+
+                                                    <!-- Qualification -->
+                                                    @for($x=0; $x<4; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->qualification[$x]) ? '' : $data->qualification[$x]->qual->qualification}}
+                                                        </td>
+                                                    @endfor
+
+
+                                                    <!-- Education -->
+                                                    @for($x=0; $x<5; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->education[$x]->certificate) ? '' : $data->education[$x]->certificate}}
+                                                        </td>
+                                                    @endfor
+
+
+                                                    <!-- Experience -->
+                                                    @for($x=0; $x<5; $x++)
+                                                        <td class="export_fields">
+                                                            {{empty($data->experience[$x]->employer) ? '' : 'Emp:'.$data->experience[$x]->employer.' | From:'.$data->experience[$x]->start_year.' | To:'.$data->experience[$x]->end_year}}
+                                                        </td>
+                                                    @endfor
+
+                                                    <td>{{empty($data->startingSalary) ? 'NA' : $data->startingSalary->curr->symbol.' '.number_format($data->startingSalary->price, 1)}}</td>
+                                                    <td>{{empty($data->reviews) ? '0.0' : number_format($data->avgRating[0]->aggregate, 1)}}</td>
                                                     <td>
                                                         @if($data->status == '1')
                                                             <span class="badge badge-info">Active</span>
@@ -147,12 +208,6 @@
             $('#exporTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
-                        extend: 'pdf',
-                        title: 'Helpers user data | Helperrific',
-                        exportOptions: {
-                            columns: "thead th:not(.noExport)"
-                        }
-                    },{
                         extend: 'excel',
                         title: 'Helpers user data | Helperrific',
                         exportOptions: {

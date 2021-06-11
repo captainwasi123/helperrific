@@ -16,8 +16,11 @@
                                                 <th>S#</th>
                                                 <th>Full Name</th>
                                                 <th>Email</th>
+                                                <th>Address</th>
                                                 <th>Country</th>
-                                                <th>Login Source</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Rating</th>
                                                 <th>Status</th>
                                                 <th>Created at</th>
                                                 <th class="noExport">Action</th>
@@ -28,31 +31,19 @@
                                             @foreach($databelt as $data)
                                                 <tr>
                                                     <td>{{$s}}</td>
-                                                    <td>
-                                                        <a target="_blank" href="{{URL::to('/agencies/detail/'.base64_encode($data->id).'/'.$data->company)}}">
-                                                            <img src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';" alt="user" width="30" class="img-circle"> 
-                                                            {{$data->company}}
-                                                        </a>
+                                                    <td> 
+                                                        {{$data->company}}
                                                     </td>
                                                     <td>{{$data->email}}</td>
-                                                    <td>{{empty($data->details) ? '-' : $data->details->country}}</td>
+                                                    <td>{{empty($data->details) ? '' : $data->details->e_address}}</td>
+                                                    <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
                                                     <td>
-                                                        <label class="badge badge-default">
-                                                        @switch($data->source)
-                                                            @case('1')
-                                                                    Website
-                                                                @break
-
-                                                            @case('2')
-                                                                    Google
-                                                                @break
-
-                                                            @case('3')
-                                                                    Facebook
-                                                                @break
-                                                        @endswitch
-                                                        </label>
+                                                        {{empty($data->details) ? '-' : $data->details->c_email}}
                                                     </td>
+                                                    <td>
+                                                        {{empty($data->details) ? '-' : $data->details->c_phone}}
+                                                    </td>
+                                                    <td>{{empty($data->reviews) ? '0.0' : number_format($data->avgRating[0]->aggregate, 1)}}</td>
                                                     <td>
                                                         @if($data->status == '1')
                                                             <span class="badge badge-info">Active</span>
@@ -147,12 +138,6 @@
             $('#exporTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
-                        extend: 'pdf',
-                        title: 'Agencies user data | Helperrific',
-                        exportOptions: {
-                            columns: "thead th:not(.noExport)"
-                        }
-                    },{
                         extend: 'excel',
                         title: 'Agencies user data | Helperrific',
                         exportOptions: {

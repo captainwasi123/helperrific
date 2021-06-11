@@ -17,7 +17,7 @@
                                                 <th>Full Name</th>
                                                 <th>Email</th>
                                                 <th>Country</th>
-                                                <th>Login Source</th>
+                                                <th>Looking Status</th>
                                                 <th>Status</th>
                                                 <th>Created at</th>
                                                 <th class="noExport">Action</th>
@@ -29,28 +29,28 @@
                                                 <tr>
                                                     <td>{{$s}}</td>
                                                     <td>
-                                                        <a href="javascript:void(0)">
-                                                            <img src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';" alt="user" width="30" class="img-circle"> 
-                                                            {{$data->fname.' '.$data->lname}}
-                                                        </a>
+                                                        {{$data->fname.' '.$data->lname}}
                                                     </td>
                                                     <td>{{$data->email}}</td>
-                                                    <td>{{empty($data->details) ? '-' : $data->details->country}}</td>
+                                                    <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
                                                     <td>
                                                         <label class="badge badge-default">
-                                                        @switch($data->source)
-                                                            @case('1')
-                                                                    Website
-                                                                @break
+                                                        @if(!empty($data->details))
+                                                            @switch($data->details->e_looking_status)
+                                                               @case('1')
+                                                                  Looking for Helpers
+                                                                  @break
 
-                                                            @case('2')
-                                                                    Google
-                                                                @break
+                                                               @case('2')
+                                                                  Looking for agencies
+                                                                  @break
 
-                                                            @case('3')
-                                                                    Facebook
-                                                                @break
-                                                        @endswitch
+                                                               @case('3')
+                                                                  Just Browsing
+                                                                  @break
+
+                                                            @endswitch
+                                                         @endif
                                                         </label>
                                                     </td>
                                                     <td>
@@ -147,12 +147,6 @@
             $('#exporTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
-                        extend: 'pdf',
-                        title: 'Employers user data | Helperrific',
-                        exportOptions: {
-                            columns: "thead th:not(.noExport)"
-                        }
-                    },{
                         extend: 'excel',
                         title: 'Employers user data | Helperrific',
                         exportOptions: {
