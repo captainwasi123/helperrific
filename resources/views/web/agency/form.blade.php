@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                            <div class="form-field1">
-                              <input type="text" placeholder="Username" name="company"  value="{{Auth::user()->company}}" required>
+                              <input type="text" name="company"  value="{{Auth::user()->company}}" required>
                            </div>
                         </div>
                      </div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
                            <div class="form-field1">
-                              <textarea placeholder="Share a little about yourself, your personality and your aspirations" name="description" required>{{empty(Auth::user()->details) ? '' : Auth::user()->details->description}}</textarea>
+                              <textarea placeholder="Share a description of your agency, your services and your values" name="description" required>{{empty(Auth::user()->details) ? '' : Auth::user()->details->description}}</textarea>
                            </div>
                         </div>
                      </div>
