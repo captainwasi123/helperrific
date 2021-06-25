@@ -40,7 +40,14 @@
       <div class="modal-content" id="pre_content">
          <div class="join-pop-head">
             <h3> Premium Account </h3>
-            <p style="padding: 0 11px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget metus diam. Pellentesque mollis iaculis risus pretium elementum. Nunc orci risus, blandit eu ex eget, rhoncus laoreet velit.</p>
+            <p style="padding: 0 11px;">
+              @if(Auth::user()->type == '1')
+                Free employer accounts are limited to 5 profile views a month. Get premium to view unlimited profiles.
+              @endif
+              @if(Auth::user()->type == '3')
+                With premium accounts, potential employers will be able to see the helpers affiliated with your agency. You will also be able to promote your best helpers and get the most views from potential employers.
+              @endif
+            </p>
             <hr class="m-t-0 m-b-0">
 
          </div>
@@ -85,9 +92,9 @@
          <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
             <div class="footer-about">
                <a href=""> <img alt="footer-logo" src="{{URL::to('/')}}/assets/images/footer-logo.jpg"> </a>
-               <h6> <a href=""> Email: info@Helperrific.com </a> </h6>
+               <!-- <h6> <a href=""> Email: info@Helperrific.com </a> </h6>
                <h6> <a href=""> Phone: 9256-654556 </a> </h6>
-               <h6> <a href=""> Facebook: Helperrific </a> </h6>
+               <h6> <a href=""> Facebook: Helperrific </a> </h6> -->
             </div>
          </div>
          <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
@@ -129,9 +136,9 @@
                <h4> FOLLOW US </h4>
                <h6> 
                   <a href=""> <i class="fab fa-facebook-f"> </i> </a> 
-                  <a href=""> <i class="fab fa-twitter"> </i> </a> 
-                  <a href=""> <i class="fab fa-instagram"> </i> </a> 
-                  <a href=""> <i class="fab fa-pinterest-p"> </i> </a> 
+                 <!--  <a href=""> <i class="fab fa-twitter"> </i> </a> 
+                  <a href=""> <i class="fab fa-instagram"> </i> </a> --> 
+                  <!-- <a href=""> <i class="fab fa-pinterest-p"> </i> </a>  -->
                   <a href=""> <i class="fab fa-linkedin-in"> </i> </a> 
                </h6>
             </div>

@@ -51,6 +51,7 @@ class webController extends Controller
             }
         }
         $filter = array();
+        $filter['expertise'] = skills::whereIn('id', ['1','3','15','13'])->get();
         $filter['skills'] = skills::all();
         $filter['availability'] = availability::all();
         $filter['countries'] = country::whereHas('users', function($qq){

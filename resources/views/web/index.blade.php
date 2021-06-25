@@ -32,7 +32,7 @@
     <div class="row">
        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 pull-right">
           <div class="helper-video">
-             <img alt="helper-intro-video" src="{{URL::to('/')}}/assets/images/helper-video.jpg">
+             <img alt="helper-intro-video" src="{{URL::to('/')}}/assets/images/close-up-woman-s-hand-holding-bucket-with-cleaning-supplies-pink-napkin.jpg">
           </div>
        </div>
        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -46,8 +46,7 @@
                 <li> <i class="fa fa-check"> </i>  <b> Not sure where to start? </b> <br/> Just contact the highest rated agencies near you and let them recommend their best people </li>
                 <li> <i class="fa fa-check"> </i>  <b> How reliable is it? </b> <br/> CVs can be just pretty words on a page but ratings and reviews from other employers like you are far more trustworthy </li>
                 <li> <i class="fa fa-check"> </i>  <b> Do I have to do the employment / helper 
-                   Application process on this website? </b> <br/> Do I have to do the employment / helper application 
-                   process on this website? 
+                   Application process on this website? </b> <br/> We do not offer these services at the moment. We are here to assist in your search for the perfect helper and agency only, all legal employment application procedures needs to be performed off-site. Simplify this process by selecting one of our agencies
                 </li>
              </ul>
           </div>
