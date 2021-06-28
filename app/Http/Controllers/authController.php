@@ -31,6 +31,11 @@ class authController extends Controller
 
     function login(Request $request){
     	$data = $request->all();
+        $check = user::where('email',$data['email'])->first();
+        if($check->status == 2){
+            return 'error';
+            exit();
+        }
     	if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'status' => '1'])){
             if(Auth::user()->type == '2' && count(Auth::user()->skills) == '0'){
                 return '/helper/rule_1';

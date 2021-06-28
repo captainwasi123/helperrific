@@ -1,4 +1,4 @@
-@extends('web.support.regMaster')
+@extends('web.support.master')
 @section('title', 'Profile | Employer')
 
 @section('content')

@@ -212,7 +212,7 @@
                   </div>
                   <div class="tab-pane" id="tabs-4" role="tabpanel">
                      <p class="InvitationM">
-                        To get more reviews, search for your past employers and agencies and click on the button 
+                     To get more reviews, search for your past clients and click on the button  
                         <strong>"Send Invitation to review me"</strong>
                      </p>
                      <div class="agency-reviews">
@@ -268,36 +268,81 @@
 
     $(document).on('click', '.approveRequest', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to confirm this request?')){
-        window.location.href = 'request/accept/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to confirm this request!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = 'request/accept/'+id;
+         }
+      });
     });
 
     $(document).on('click', '.rejectRequest', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to reject this request?')){
-        window.location.href = 'request/reject/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to reject this request!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = 'request/reject/'+id;
+         }
+      });
     });
 
     $(document).on('click', '.makeStar', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to make star helper?')){
-        window.location.href = 'helper/star/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to make star helper!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = 'helper/star/'+id;
+         }
+      });
     });
     $(document).on('click', '.removeStar', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to remove from star helper?')){
-        window.location.href = 'helper/removeStar/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to remove from star helper!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = 'helper/removeStar/'+id;
+         }
+      });
     });
 
     $(document).on('click', '.terminateHelper', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to terminate this helper?')){
-        window.location.href = 'helper/terminate/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to terminate this helper!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = 'helper/terminate/'+id;
+         }
+      });
     });
 
 

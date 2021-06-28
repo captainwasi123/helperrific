@@ -123,7 +123,7 @@
                                  <div class="profile-about-text">
                                     <h3> Qualification </h3>
                                     @foreach(Auth::user()->qualification as $val)
-                                      <p> {{$val->qual->qualification}} </p>
+                                      <p> {{@$val->qual->qualification}} </p>
                                     @endforeach
                                  </div>
                               </div>

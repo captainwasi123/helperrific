@@ -72,11 +72,11 @@
                         </div>
                      </div>
                   </div>
-                  <div class="col-md-12">
+                  <!-- <div class="col-md-12">
                       <div class="skill-add-button" style="margin-top: -15px; margin-bottom: 25px;">
                         <button type="button" id="addExpertise"> Add another </button>
                       </div>
-                  </div>
+                  </div> -->
               </div>
 
               <div class="row">
@@ -143,6 +143,7 @@
                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                       <div class="form-field1">
                          <select name="qual[]">
+                         <option value="">select qualifications</option>
                             @foreach($qual as $val)
                               <option value="{{$val->id}}"> {{$val->qualification}}  </option>
                             @endforeach
@@ -257,9 +258,10 @@
                   <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                      <div class="form-field1">
                         <select name="ss_currency">
-                           @foreach($currency as $val)
+                        <option value="92"> SGD </option>
+                           <!-- @foreach($currency as $val)
                            <option value="{{$val->id}}" {{!empty(Auth::user()->startingSalary) && Auth::user()->startingSalary->currency == $val->id ? 'selected' : ''}}> {{$val->code}} </option>
-                           @endforeach
+                           @endforeach -->
                         </select>
                      </div>
                   </div>

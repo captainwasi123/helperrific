@@ -41,12 +41,14 @@
          <div class="join-pop-head">
             <h3> Premium Account </h3>
             <p style="padding: 0 11px;">
+            @if(Auth::check())
               @if(Auth::user()->type == '1')
                 Free employer accounts are limited to 5 profile views a month. Get premium to view unlimited profiles.
               @endif
               @if(Auth::user()->type == '3')
                 With premium accounts, potential employers will be able to see the helpers affiliated with your agency. You will also be able to promote your best helpers and get the most views from potential employers.
               @endif
+            @endif  
             </p>
             <hr class="m-t-0 m-b-0">
 

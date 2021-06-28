@@ -32,7 +32,7 @@
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                   <div class="agency-box">
                      <img alt="agency-icon" src="{{URL::to('/')}}/assets/images/agency-icon11.jpg">
-                     <p> Do not engage helpers illegally, make sure you follow the employment rules set by the countries in which you intend to work. </p>
+                     <p> Do not engage helpers illegally, make sure you follow the employment rules set by the countries in which you intend to hire. </p>
                   </div>
                </div>
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">

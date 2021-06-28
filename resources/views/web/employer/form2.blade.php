@@ -18,7 +18,7 @@
             <form method="post">
               {{csrf_field()}}
               <div class="regis-info1">
-                 <h5 style="max-width: 500px;"> The Helper you are looking for needs to be Experienced in </h5>
+                 <h5 style="max-width: 500px;"> I am looking for a helper who has these skills and qualifications </h5>
                  <h6 class="col-grey text-right"> * Mandatory Fields </h6>
               </div>
               <div class="row" id="skill_block">
@@ -66,7 +66,7 @@
                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                       <div class="form-field1">
                         <select name="qualstatus[]" required>
-                          <option value=""> Select</option>
+                          <option value=""> Select Status</option>
                           <option value="1">Required</option>
                           <option value="2">Nice to have</option>
                        </select>

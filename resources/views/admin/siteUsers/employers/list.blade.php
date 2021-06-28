@@ -18,6 +18,7 @@
                                                 <th>Email</th>
                                                 <th>Country</th>
                                                 <th>Looking Status</th>
+                                                <!-- <th>Skills</th> -->
                                                 <th>Status</th>
                                                 <th>Created at</th>
                                                 <th class="noExport">Action</th>
@@ -53,6 +54,7 @@
                                                          @endif
                                                         </label>
                                                     </td>
+                                                    <!-- <td>{{$data->skills}}</td> -->
                                                     <td>
                                                         @if($data->status == '1')
                                                             <span class="badge badge-info">Active</span>

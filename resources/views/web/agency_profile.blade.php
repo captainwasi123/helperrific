@@ -202,9 +202,21 @@
 
     $(document).on('click', '.joinAgency', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to join this agency?')){
-        window.location.href = '../../../agency/join/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to join this agency!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = '../../../agency/join/'+id;
+         }
+      });
+       
+      
+     
     });
 
   });
