@@ -125,6 +125,22 @@ class webController extends Controller
                         ->paginate(16);
         return view('web.response.agencyFilter', ['agencies' => $agencies, 'favors' => $favors]);
     }
+
+    function employersSearch(Request $request){
+        
+        $data = $request->all();
+        
+
+        $employers = User::where(['status' => '1', 'type' => '1'])
+                        ->when(!empty($data['elocation']), function ($q) use ($data) {
+                            return $q->whereHas('details', function($q) use ($data){
+                                        $q->where('country', $data['elocation']);
+                                    });
+                        })
+                        ->where('id', '!=', Auth::id())
+                        ->paginate(16);
+        return view('web.response.employerFilter', ['employers' => $employers]);
+    }
     
 
     function helperDetail($id, $name){
@@ -151,7 +167,7 @@ class webController extends Controller
                 }
 
                 $id = base64_decode($id);
-                $data = User::where(['status' => '1', 'id' => $id])->first();
+                $data = User::with(['agency','agency.agency'])->where(['status' => '1', 'id' => $id])->first();
                 return view('web.helper_profile', ['data' => $data, 'favors' => $favors]);
             }else{
                 return redirect('/');
@@ -185,6 +201,23 @@ class webController extends Controller
         $agencies = User::where(['status' => '1', 'type' => '3'])->where('company', '!=', null)->where('id', '!=', Auth::id())->paginate(16);
 
 		return view('web.agencies', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
+    }
+
+    function employers(){
+    	
+        $favors = array();
+        if(Auth::check()){
+            foreach(Auth::user()->favorite as $val){
+                array_push($favors, $val->favor_id);
+            }
+        }
+        $countries = country::whereHas('agencyUsers', function($qq){
+                        $qq->where('country', '!=', null);
+                    })->get();
+
+        $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->paginate(16);
+
+		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
     }
 
     function agencyDetail($id, $name){

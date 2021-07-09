@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="nav-devider"></li>
-                        <li class="nav-small-cap">SETTINGs</li>
+                        <li class="nav-small-cap">SETTINGS</li>
                         <li> 
                             <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                                 <i class="fa fa-users"></i>
@@ -61,6 +61,12 @@
                                 <li><a href="{{URL::to('/admin/users/add')}}">Add</a></li>
                                 <li><a href="{{URL::to('/admin/users')}}">View List</a></li>
                             </ul>
+                        </li>
+                        <li> 
+                            <a class="waves-effect" href="{{URL::to('/admin/websiteSetting')}}" aria-expanded="false">
+                                <i class="mdi mdi-settings"></i>
+                                <span class="hide-menu">Website Setting</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>

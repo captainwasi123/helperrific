@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // Web Routes
+	//maintenance
+	Route::get('/maintenance','maintenanceController@index')->name('maintenance');
 
 	// Main Pages
 		Route::get('/', 'webController@index');
@@ -23,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/helpers/detail/{id}/{name}', 'webController@helperDetail');
 		Route::get('/agencies', 'webController@agencies');
 		Route::get('/agencies/detail/{id}/{name}', 'webController@agencyDetail');
-
+		Route::get('/employers', 'webController@employers');
+		
 		Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
 
 		Route::get('/searchResult', 'webController@searchResult');
@@ -31,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 		Route::post('/enquiry', 'webController@sendEnquiry');
 		Route::post('/helpers', 'webController@helperSearch');
 		Route::post('/agencies', 'webController@agencySearch');
+		Route::post('/employers', 'webController@employersSearch');
+		
 
 		Route::get('/settings', 'webController@settings');
 		Route::get('/private/status/{id}', 'webController@privateAccount');
@@ -80,7 +85,9 @@ use Illuminate\Support\Facades\Route;
 
 		Route::post('/inbox/messageSend', 'chatController@sendMessage');
 
-
+		Route::get('/inbox/chat_delete/{id}', 'chatController@deleteChat');
+		Route::get('/inbox/chat_follow_up/{id}/{chat_type}', 'chatController@chat_follow_up');
+		Route::get('/inbox/chat_user/{id}', 'chatController@chat_user');
 
 
 	//Helper
@@ -219,3 +226,7 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/admin/reviewReports', 'reviewReportController@index');
 		Route::get('/admin/reviewHide/{id}', 'reviewReportController@hide');
 		Route::get('/admin/reviewDelete/{id}', 'reviewReportController@delete');
+
+	//website Setting 
+	Route::get('/admin/websiteSetting', 'websiteSettingControlle@index');
+	Route::get('/admin/websiteSetting/update/{id}', 'websiteSettingControlle@udapte');	

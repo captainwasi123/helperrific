@@ -14,7 +14,7 @@
                </div>
                <div class="about-profile-name">
                   <h4> {{$data->fname}} {{$data->lname}}</h4>
-                  <h6> {{!empty($data->details) && !empty($data->details->count) ? $data->details->count->country : '-'}} </h6>
+                  <h6> {{!empty($data->details) && !empty($data->details->count) ? $data->details->count->country : '-'}} <span style="margin-left: 100px;">{{$data->agency->agency->company}}</span></h6>
                   @if(in_array($data->id, $favors))
                       <a href="{{URL::to('/favorite/remove/'.base64_encode($data->id))}}" class="normal-btn bg-primary col-white"> Remove from favourites </a> 
                   @else

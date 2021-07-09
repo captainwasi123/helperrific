@@ -6,12 +6,22 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\admin;
 use App\Models\admin\role;
+use App\Models\User;
+use Illuminate\Support\Arr;
+use App\Models\orders\order;
 
 class adminController extends Controller
 {
     function index(){
     	if(Auth::guard('admin')->check()){
-    		return view('admin.index');
+            $user = User::get();
+            $data = array(
+                'agency' => $user->where('type',3)->where('status',1)->count(),
+                'helper' => $user->where('type',2)->where('status',1)->count(),
+                'employer' => $user->where('type',1)->where('status',1)->count(),
+                'total_orders' => order::count(),
+            );
+    		return view('admin.index')->with($data);
     	}else{
     		return redirect('admin\login');
     	}

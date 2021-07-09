@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\inbox\chat;
 use App\Events\sendChat;
 use Pusher\Pusher;
+use DB;
 
 class chatController extends Controller
 {
@@ -30,7 +31,7 @@ class chatController extends Controller
     function inboxChat($id, $name){
     	if(Auth::check()){
     		$id = base64_decode($id);
-    		$sender = Auth::id();
+    		$sender = Auth::id(); 
     		$receiver = $id;
     		$user = User::find($id);
     		$data = chat::Where(function($query) use ($sender, $receiver)
@@ -50,10 +51,77 @@ class chatController extends Controller
 	                        ->orderBy('created_at', 'desc')
 	                        ->get();
 
-    		return view('web.chat.chat', ['user' => $user, 'chat' =>$data, 'chat_list' => $data_list]);
+    		return view('web.chat.chat', ['user' => $user, 'chat' =>$data, 'chat_list' => $data_list, 'receiver' => $receiver]);
     	}else{
     		return redirect('/');
     	}
+    }
+
+    public function deleteChat($id)
+    {
+        $sender = Auth::id(); 
+        $receiver = $id;
+       chat::Where(function($query) use ($sender, $receiver)
+            {
+                $query->where("sender_id",$sender)
+                    ->where("receiver_id",$receiver);
+            })
+            ->orWhere(function($query) use ($sender, $receiver)
+            {
+                $query->Where("sender_id",$receiver)
+                    ->Where("receiver_id",$sender);
+            })
+            ->delete();
+    }
+    public function chat_follow_up($id,$chat_type)
+    {
+        $sender = Auth::id(); 
+        $receiver = $id;
+        $chat = chat::Where(function($query) use ($sender, $receiver)
+            {
+                $query->where("sender_id",$sender)
+                    ->where("receiver_id",$receiver);
+            })
+            ->orWhere(function($query) use ($sender, $receiver)
+            {
+                $query->Where("sender_id",$receiver)
+                    ->Where("receiver_id",$sender);
+            })
+            ->get();
+        $chat_id = $chat->pluck('id'); 
+        DB::table('tbl_chat_messages_info')
+        ->whereIn('id', $chat_id)  
+        ->update(['chat_type' => $chat_type]);
+        if($chat_type == 5){
+            $msg = "This chat follow-up Successfully.";
+        }if($chat_type == 3){
+            $msg = "This chat starred Successfully.";
+        }if($chat_type == 2){
+            $msg = "This chat unread Successfully.";
+        }if($chat_type == 4){
+            $msg = "This chat archived Successfully.";
+        }    
+        return $msg;
+    }
+
+    public function chat_user($id)
+    {
+        $sender = Auth::id(); 
+        $data_list = chat::Where(function($query) use ($sender)
+        {
+            $query->where("sender_id",$sender);
+            $query->OrWhere("receiver_id",$sender);
+        });
+
+        if($id != 1){
+            $data_list = $data_list->where('chat_type',$id);
+        }
+        
+
+        $data_list = $data_list->distinct("sender_id", "receiver_id")
+        ->orderBy('created_at', 'desc')
+        ->get();  
+        return view('web.chat.chat_user', ['chat_list' => $data_list]);
     }
 
     function sendMessage(Request $request){
