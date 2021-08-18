@@ -68,6 +68,7 @@
                   <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">CURRENT HELPERS</a></li>
                   <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">STAR HELPERS</a></li>
                   <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">AGENCY REVIEWS</a></li>
+                  <li role="presentation"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab">INVITES</a></li>
                </ul>
             </div>
             <div class="profile-content">
@@ -242,6 +243,51 @@
                         @endforeach
                      </div>
                   </div>
+                  <div class="tab-pane" id="tabs-5" role="tabpanel">
+                        <div class="row">
+                           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                              <div class="table-responsive">
+                                 <table class="table">
+                                    <thead>
+                                       <tr>
+                                          <th>#</th>
+                                          <th>Request</th>
+                                          <th>Request at</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       @php $s=1; @endphp
+                                       @foreach(Auth::user()->reviewInvitation as $val)
+                                          <tr>
+                                             <td>{{$s}}</td>
+                                             <td>
+                                                @if($val->requestBy->type == '3')
+                                                   <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
+                                                @else
+                                                   <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
+                                                @endif
+                                                   <div class="profile-block">
+                                                      <img src="{{URL::to('/')}}/public/profile_img/{{$val->requestBy->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
+                                                      <h4>{{$val->requestBy->type == '3' ? $val->requestBy->company : $val->requestBy->fname.' '.$val->requestBy->lname}}</h4>
+                                                      <span class="label label-warning">{{$val->requestBy->type == '3' ? 'Agency' : 'Helper'}}</span>
+                                                   </div>
+                                                </a>
+                                             </td>
+                                             <td>{{$val->created_at->diffForHumans()}}</td>
+                                          </tr>
+                                          @php $s++; @endphp
+                                       @endforeach
+                                       @if(count(Auth::user()->reviewInvitation) == 0)
+                                          <tr>
+                                             <td colspan="4">No Request Found.</td>
+                                          </tr>
+                                       @endif
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                </div>
             </div>
          </div>

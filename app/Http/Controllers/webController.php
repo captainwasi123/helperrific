@@ -168,7 +168,8 @@ class webController extends Controller
 
                 $id = base64_decode($id);
                 $data = User::with(['agency','agency.agency'])->where(['status' => '1', 'id' => $id])->first();
-                return view('web.helper_profile', ['data' => $data, 'favors' => $favors]);
+                $invite = reviewInvitation::where(['request_to' => $id, 'request_by' => Auth::id()])->first();
+                return view('web.helper_profile', ['data' => $data, 'favors' => $favors, 'invite' => $invite]);
             }else{
                 return redirect('/');
             }
@@ -244,6 +245,7 @@ class webController extends Controller
                 }
                 $id = base64_decode($id);
                 $data = User::where(['status' => '1', 'id' => $id])->first();
+                $invite = reviewInvitation::where(['request_to' => $id, 'request_by' => Auth::id()])->first();
 
                 $curr_helper = joinHelper::where('agency_id', $id)
                                             ->where('status', '2')
@@ -256,7 +258,7 @@ class webController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->get();
                                             
-                return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors]);
+                return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors,'invite' => $invite]);
             }else{
                 return redirect('/');
             }

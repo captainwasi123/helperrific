@@ -19,6 +19,15 @@
                       <a href="{{URL::to('/favorite/remove/'.base64_encode($data->id))}}" class="normal-btn bg-primary col-white"> Remove from favourites </a> 
                   @else
                       <a href="{{URL::to('/favorite/add/'.base64_encode($data->id))}}" class="normal-btn bg-primary col-white"> Save to favourites </a>
+                  @endif <br> <br>
+                  @if(Auth::check())
+                    @if(empty($invite->id))
+                      <a href="javascript:void(0)" class="normal-btn bg-primary col-white sendInvite" data-id="{{base64_encode($data->id)}}"> Send Invitation to review me </a>
+                    @else
+                      <div class="alert alert-warning">
+                        You have sent review invitaion {{$invite->created_at->diffForHumans()}}
+                      </div>
+                    @endif
                   @endif
                   @if(Auth::check() && Auth::user()->type == '1')
                     <a href="javascript:void()" class="normal-btn bg-primary col-white open-order" data-id="{{base64_encode($data->id)}}"> Hire Me </a>
@@ -154,7 +163,8 @@
                     <div class="agency-reviews">
                         <div class="row">
                           <div class="col-md-6">
-                            @if(Auth::check() && Auth::user()->type == '1')
+                            <!-- if Auth: : check () & & Auth :: user ()-> type == '1' -->
+                            @if(Auth::check())
                               <a href="javascript:void(0);" class="normal-btn bg-primary col-white writeReview" data-id="{{base64_encode($data->id)}}" data-name="{{$data->fname}} {{$data->lname}}"> Write review </a>
                             @endif
                           </div>

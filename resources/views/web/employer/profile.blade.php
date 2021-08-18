@@ -106,7 +106,7 @@
                                              <td>{{$s}}</td>
                                              <td>
                                                 @if($val->requestBy->type == '3')
-                                                   <a href="{{URL::to('/agencies/detail/'.base64_encode($data->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
+                                                   <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
                                                 @else
                                                    <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
                                                 @endif
