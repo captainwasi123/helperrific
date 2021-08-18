@@ -14,6 +14,7 @@
                             <h1 class="sec-2"> Request# {{$data->id}} </h1>
                           </div>
                           <div class="col-md-3">
+                            <!-- @if(Auth::id() == $data->seller_id) -->
                               <div>
                                 <label>Status:</label>
                                 <select class="form-control" data-id="{{base64_encode($data->id)}}" id="order_status">
@@ -24,6 +25,11 @@
                                   @endforeach
                                 </select>
                               </div>
+                            <!-- @else -->
+                              <!-- <div class="pull-right">
+                                <a href="javascript:void(0)" class="btn btn-{{$data->orderStatus->badge_tag}}">{{$data->orderStatus->status}}</a>
+                              </div> -->
+                            <!-- @endif -->
                           </div>
                         </div>
                         <div class="row">
