@@ -20,6 +20,7 @@ use App\Models\orders\order;
 use App\Models\helper\startSalary;
 use App\Models\country;
 use App\Models\currency;
+use App\Models\agency\joinHelper;
 
 class helperController extends Controller
 {
@@ -45,8 +46,8 @@ class helperController extends Controller
 	function profile(){
 		if(Auth::check() && Auth::user()->type == '2'){
         	$availability = availability::all();
-
-			return view('web.helper.profile', ['availability' => $availability]);
+			$join = joinHelper::where('helper_id', Auth::id())->where('status', '2')->count();
+			return view('web.helper.profile', ['availability' => $availability,'check_a' => $join]);
 		}else{
 			return redirect('/');
 		}

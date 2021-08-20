@@ -1,4 +1,4 @@
-@extends('web.support.regMaster')
+@extends('web.support.master')
 @section('title', 'Helper Profile')
 
 @section('content')
@@ -31,9 +31,19 @@
                      </div>
                      <div class="about-profile-name">
                         <h4> {{Auth::user()->fname}} {{Auth::user()->lname}}</h4>
-                        <h6> {{!empty(Auth::user()->details) && !empty(Auth::user()->details->count) ? Auth::user()->details->count->country : '-'}} </h6>
+                        <h6> {{!empty(Auth::user()->details) && !empty(Auth::user()->details->count) ? Auth::user()->details->count->country : '-'}}   
+                        @if($check_a != 0)
+                          <strong style=" margin-left: 27px; ">{{Auth::user()->agency->agency->company}}</strong> 
+                        @endif
+                        </h6> 
                         <a href="{{URL::to('/helper/form_1')}}" class="normal-btn bg-primary col-white"> Update Info </a>
                         <br><br>
+                        @if($check_a == 0)
+                        <div class="alert alert-warning">
+                        If you are affiliated with you an agency, you should invite them to display you affiliation by searching for them and clicking on the button that says "Join".
+                        </div>
+                        <br><br>
+                        @endif
                         <div class="row">
                           <div class="col-md-6">
                             <label>Availability:</label><br>
