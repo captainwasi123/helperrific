@@ -62,6 +62,12 @@
                                 <li><a href="{{URL::to('/admin/users')}}">View List</a></li>
                             </ul>
                         </li>
+                        <li> 
+                            <a class="waves-effect" href="{{URL::to('/admin/site_maintenance')}}" aria-expanded="false">
+                                <i class="mdi mdi-tune"></i>
+                                <span class="hide-menu">Site Settings</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

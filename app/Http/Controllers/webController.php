@@ -14,6 +14,7 @@ use App\Models\country;
 use App\Models\employer\viewCount;
 use App\Models\employer\reviewInvitation;
 use App\Models\reviewReport;
+use App\Models\siteMainten;
 
 
 
@@ -347,4 +348,13 @@ class webController extends Controller
 
         return redirect()->back()->with('success', 'Review Reported.');
     } 
+
+    function maintenance(){
+        $d = siteMainten::first();
+        if($d->status == '1'){
+            return redirect('/');
+        }else{
+            return view('web.maintenance');
+        }
+    }
 }

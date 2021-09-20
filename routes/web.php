@@ -15,73 +15,75 @@ use Illuminate\Support\Facades\Route;
 
 
 // Web Routes
+	
+	Route::middleware('siteMaintenn')->group(function(){
 
-	// Main Pages
-		Route::get('/', 'webController@index');
-		Route::get('/helpers', 'webController@helpers');
-		Route::get('/helpers/{cat}', 'webController@helpersCat');
-		Route::get('/helpers/detail/{id}/{name}', 'webController@helperDetail');
-		Route::get('/agencies', 'webController@agencies');
-		Route::get('/agencies/detail/{id}/{name}', 'webController@agencyDetail');
+		// Main Pages
+			Route::get('/', 'webController@index');
+			Route::get('/helpers', 'webController@helpers');
+			Route::get('/helpers/{cat}', 'webController@helpersCat');
+			Route::get('/helpers/detail/{id}/{name}', 'webController@helperDetail');
+			Route::get('/agencies', 'webController@agencies');
+			Route::get('/agencies/detail/{id}/{name}', 'webController@agencyDetail');
 
-		Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
+			Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
 
-		Route::get('/searchResult', 'webController@searchResult');
+			Route::get('/searchResult', 'webController@searchResult');
 
-		Route::post('/enquiry', 'webController@sendEnquiry');
-		Route::post('/helpers', 'webController@helperSearch');
-		Route::post('/agencies', 'webController@agencySearch');
+			Route::post('/enquiry', 'webController@sendEnquiry');
+			Route::post('/helpers', 'webController@helperSearch');
+			Route::post('/agencies', 'webController@agencySearch');
 
-		Route::get('/settings', 'webController@settings');
-		Route::get('/private/status/{id}', 'webController@privateAccount');
-		Route::get('/account/delete', 'webController@deleteAccount')->name('account.delete');
-		Route::post('/password/change', 'webController@changePassword')->name('change.password');
+			Route::get('/settings', 'webController@settings');
+			Route::get('/private/status/{id}', 'webController@privateAccount');
+			Route::get('/account/delete', 'webController@deleteAccount')->name('account.delete');
+			Route::post('/password/change', 'webController@changePassword')->name('change.password');
 
-		Route::get('/reviewInvitation/send/{id}', 'webController@sendInvitation');
-		Route::get('reportReview/{id}', 'webController@reportReview');
+			Route::get('/reviewInvitation/send/{id}', 'webController@sendInvitation');
+			Route::get('reportReview/{id}', 'webController@reportReview');
 
-	//Premium Account
-		Route::prefix('premium')->group(function(){
+		//Premium Account
+			Route::prefix('premium')->group(function(){
 
-			Route::get('/getPrice', 'premiumController@getPrice');
-			Route::post('/subscribe', 'premiumController@subscribe')->name('premium.subscribe');
-		});
-
-
-	// User Authentication
-		Route::post('/register', 'authController@register');
-		Route::post('/login', 'authController@login');
-		Route::get('/logout', 'authController@logout');
-
-		Route::post('/profilePic/upload', 'authController@profilePic');
-		Route::post('/coverPic/upload', 'authController@coverPic');
-
-		Route::get('/favorite/add/{id}', 'authController@addFavorite');
-		Route::get('/favorite/remove/{id}', 'authController@removeFavorite');
-		Route::get('/saved', 'authController@savedProfile');
-
-		Route::post('/users/type/setup', 'authController@userTypeSetup');
-
-		//Login With Google
-
-			Route::get('auth/google', 'googleController@redirectToGoogle');
-			Route::get('auth/google/callback', 'googleController@handleGoogleCallback');
-
-		//Login With Facebook
-
-			Route::get('auth/facebook', 'facebookController@redirectToFacebook');
-			Route::get('auth/facebook/callback', 'facebookController@handleFacebookCallback');
+				Route::get('/getPrice', 'premiumController@getPrice');
+				Route::post('/subscribe', 'premiumController@subscribe')->name('premium.subscribe');
+			});
 
 
-	//Messenger
+		// User Authentication
+			Route::post('/register', 'authController@register');
+			Route::post('/login', 'authController@login');
+			Route::get('/logout', 'authController@logout');
 
-		Route::get('/inbox', 'chatController@index');
-		Route::get('/inbox/chat/{id}/{name}', 'chatController@inboxChat');
+			Route::post('/profilePic/upload', 'authController@profilePic');
+			Route::post('/coverPic/upload', 'authController@coverPic');
 
-		Route::post('/inbox/messageSend', 'chatController@sendMessage');
+			Route::get('/favorite/add/{id}', 'authController@addFavorite');
+			Route::get('/favorite/remove/{id}', 'authController@removeFavorite');
+			Route::get('/saved', 'authController@savedProfile');
+
+			Route::post('/users/type/setup', 'authController@userTypeSetup');
+
+			//Login With Google
+
+				Route::get('auth/google', 'googleController@redirectToGoogle');
+				Route::get('auth/google/callback', 'googleController@handleGoogleCallback');
+
+			//Login With Facebook
+
+				Route::get('auth/facebook', 'facebookController@redirectToFacebook');
+				Route::get('auth/facebook/callback', 'facebookController@handleFacebookCallback');
 
 
+		//Messenger
 
+			Route::get('/inbox', 'chatController@index');
+			Route::get('/inbox/chat/{id}/{name}', 'chatController@inboxChat');
+
+			Route::post('/inbox/messageSend', 'chatController@sendMessage');
+	});
+
+	Route::get('maintenance', 'webController@maintenance')->name('maintenance');
 
 	//Helper
 
@@ -219,3 +221,8 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/admin/reviewReports', 'reviewReportController@index');
 		Route::get('/admin/reviewHide/{id}', 'reviewReportController@hide');
 		Route::get('/admin/reviewDelete/{id}', 'reviewReportController@delete');
+
+	//Site Maintenance
+
+		Route::get('/admin/site_maintenance', 'adminController@siteMaintencance');
+		Route::get('/admin/site_maintenance/{status}', 'adminController@siteMaintencanceStatus');

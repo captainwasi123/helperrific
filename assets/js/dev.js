@@ -166,7 +166,7 @@ $(document).ready(function(){
             keyboard: false
         });
         $('.alert-modal').modal('show');
-        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert.! </h4><p> '+cont+'.</p>');
+        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert! </h4><p> '+cont+'.</p>');
         
     });
 
@@ -178,7 +178,7 @@ $(document).ready(function(){
             keyboard: false
         });
         $('.alert-modal').modal('show');
-        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert.! </h4><p> '+cont+'.</p>');
+        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert! </h4><p> '+cont+'.</p>');
         
     });
 

@@ -37,18 +37,8 @@
 
 <div class="modal fade premium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
    <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
-      <div class="modal-content" id="pre_content">
-         <div class="join-pop-head">
-            <h3> Premium Account </h3>
-            <p style="padding: 0 11px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget metus diam. Pellentesque mollis iaculis risus pretium elementum. Nunc orci risus, blandit eu ex eget, rhoncus laoreet velit.</p>
-            <hr class="m-t-0 m-b-0">
-
-         </div>
-         <div id="premium_content">
-         </div>
-         <div>
-            <a href="javascript:void(0)" class="skip_btn" data-dismiss="modal" aria-label="Close">Skip ></a>
-         </div>
+      <div class="modal-content" id="premium_content">
+         
       </div>
    </div>
 </div>

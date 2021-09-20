@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\admin;
 use App\Models\admin\role;
+use App\Models\siteMainten;
 
 class adminController extends Controller
 {
@@ -146,6 +147,28 @@ class adminController extends Controller
 
             return redirect()->back()->with('success', 'User Deleted.');
 
+        }else{
+            return redirect('admin\login');
+        }
+    }
+
+    function siteMaintencance(){
+        if(Auth::guard('admin')->check()){
+            $data['mainten'] = siteMainten::first();
+
+            return view('admin.settings.maintenance')->with($data);
+        }else{
+            return redirect('admin\login');
+        }
+    }
+
+    function siteMaintencanceStatus($status){
+        if(Auth::guard('admin')->check()){
+            $d = siteMainten::first();
+            $d->status = $status;
+            $d->save();
+
+            return 'done';
         }else{
             return redirect('admin\login');
         }
