@@ -9,10 +9,19 @@
       <div class="row bg-white">
          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 no-pad">
             <div class="all-messages">
-               <div class="conversation-head">
-                  <h3> All Conversations  <button class="chat-toggle"> <i class="fa fa-angle-down"> </i> </button> </h3>
+               <div class="conversation-head" style="padding: 15px 11px;">
+               <div class="listing-filters">
+                   <select class="chat_filter" name="chattype" id="chattype" style="width:auto;background:none;color:#1f1d1d">
+                      <option value="1"> All Conversations </option>
+                        <option value="2"> Unread </option>
+                        <option value="3"> Starred </option>
+                        <option value="4"> Archived </option>
+                        <option value="5"> Follow-up </option>
+                  </select>
                </div>
-               <div class="conversations-all max-height1">
+                  <!-- <h3> All Conversations  <button class="chat-toggle"> <i class="fa fa-angle-down"> </i> </button> </h3> -->
+               </div>
+               <div class="conversations-all max-height1" id="content_chat_type">
                   @foreach($chat_list as $val)
                      @if($val->sender_id != Auth::id())
                         @if(!in_array($val->sender_id, $list_item))
@@ -53,7 +62,12 @@
                   <p> Last seen 15m ago </p>
                </div>
                <div class="chat-actions">
-                  <div class="dropdown">
+               <a type="button" class="follow_up" data-chat_type="3" data-receiver="{{$receiver}}"> <i class="far fa-star"></i> </a>
+               <a type="button" class="follow_up" data-chat_type="2" data-receiver="{{$receiver}}"> <i class="far fa-envelope-open"></i> </a>
+               <a type="button" class="follow_up" data-chat_type="4" data-receiver="{{$receiver}}"> <i class="fas fa-inbox"></i> </a>
+               <a type="button" id="delete_chat" data-receiver="{{$receiver}}"> <i class="far fa-trash-alt"></i> </a>
+               <a type="button" class="follow_up" data-chat_type="5" data-receiver="{{$receiver}}"> <i class="fas fa-tag"></i> </a>
+                  <!-- <div class="dropdown">
                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                      <i class="fas fa-ellipsis-h"></i>
                      </button>
@@ -66,7 +80,7 @@
                            <li><a href="{{URL::to('/agency/requests')}}">Active Requests</a></li> 
                         @endif
                      </ul>
-                  </div>
+                  </div> -->
                </div>
             </div>
             <div class="message-wrapper-bottom">
@@ -196,5 +210,53 @@
       }); 
    </script>
 
-
+<script>
+$('#delete_chat').click(function(){
+ 
+ swal({
+    title: "Are you sure?",
+    text: "want to delete this chat!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+    })
+    .then((willDelete) => {
+    if (willDelete) {
+        var receiver = $(this).data('receiver');
+        $.get( "{{URL::to('/')}}/inbox/chat_delete/"+receiver, function( data ) {
+         swal({
+            title: "success!",
+            text: "This chat deleted Successfully.",
+            icon: "success",
+            button: "Ok",
+         });
+         window.setTimeout(function () {
+            window.location.href = "{{URL::to('/')}}/inbox";
+         }, 1000);
+        });
+    }
+ });
+});
+$('.follow_up').click(function(){
+   var receiver = $(this).data('receiver');
+   var chat_type = $(this).data('chat_type');
+      $.get( "{{URL::to('/')}}/inbox/chat_follow_up/"+receiver+"/"+chat_type, function( data ) {
+         swal({
+            title: "success!",
+            text: data,
+            icon: "success",
+            button: "Ok",
+         });
+      });
+});
+$('#chattype').change(function(){
+   receiver = $('#chattype').val();
+   $('#content_chat_type').html('<div class="r_success_block"><img style="margin-left: 118px; margin-top: 46px;" src="'+host+'/assets/images/search-loader.gif" class="search_gif" />');
+   
+      $.get( "{{URL::to('/')}}/inbox/chat_user/"+receiver, function( data ) {
+         $('#content_chat_type').html(data);
+      });
+   
+})
+</script>
 @endsection

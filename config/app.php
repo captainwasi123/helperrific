@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'is_live' => env('IS_LIVE'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment

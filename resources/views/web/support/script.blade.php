@@ -6,3 +6,4 @@
       <script src="{{URL::to('/')}}/assets/js/functions.js"> </script>
       <script src="{{URL::to('/')}}/assets/js/dev.js"> </script>
       <script src="{{URL::to('/')}}/assets/js/push.js"> </script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

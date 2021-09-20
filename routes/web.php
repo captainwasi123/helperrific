@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Web Routes
+<<<<<<< HEAD
 	
 	Route::middleware('siteMaintenn')->group(function(){
 
@@ -27,12 +28,35 @@ use Illuminate\Support\Facades\Route;
 			Route::get('/agencies/detail/{id}/{name}', 'webController@agencyDetail');
 
 			Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
+=======
+	//maintenance
+	Route::get('/maintenance','maintenanceController@index')->name('maintenance');
+
+	// Main Pages
+		Route::get('/', 'webController@index');
+		Route::get('/helpers', 'webController@helpers');
+		Route::get('/helpers/{cat}', 'webController@helpersCat');
+		Route::get('/helpers/detail/{id}/{name}', 'webController@helperDetail');
+		Route::get('/agencies', 'webController@agencies');
+		Route::get('/agencies/detail/{id}/{name}', 'webController@agencyDetail');
+		Route::get('/employers', 'webController@employers');
+		
+		Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
+>>>>>>> 7362012579add8637f368b2fd6967a56779dffcb
 
 			Route::get('/searchResult', 'webController@searchResult');
 
+<<<<<<< HEAD
 			Route::post('/enquiry', 'webController@sendEnquiry');
 			Route::post('/helpers', 'webController@helperSearch');
 			Route::post('/agencies', 'webController@agencySearch');
+=======
+		Route::post('/enquiry', 'webController@sendEnquiry');
+		Route::post('/helpers', 'webController@helperSearch');
+		Route::post('/agencies', 'webController@agencySearch');
+		Route::post('/employers', 'webController@employersSearch');
+		
+>>>>>>> 7362012579add8637f368b2fd6967a56779dffcb
 
 			Route::get('/settings', 'webController@settings');
 			Route::get('/private/status/{id}', 'webController@privateAccount');
@@ -77,11 +101,17 @@ use Illuminate\Support\Facades\Route;
 
 		//Messenger
 
+<<<<<<< HEAD
 			Route::get('/inbox', 'chatController@index');
 			Route::get('/inbox/chat/{id}/{name}', 'chatController@inboxChat');
 
 			Route::post('/inbox/messageSend', 'chatController@sendMessage');
 	});
+=======
+		Route::get('/inbox/chat_delete/{id}', 'chatController@deleteChat');
+		Route::get('/inbox/chat_follow_up/{id}/{chat_type}', 'chatController@chat_follow_up');
+		Route::get('/inbox/chat_user/{id}', 'chatController@chat_user');
+>>>>>>> 7362012579add8637f368b2fd6967a56779dffcb
 
 	Route::get('maintenance', 'webController@maintenance')->name('maintenance');
 
@@ -222,7 +252,13 @@ use Illuminate\Support\Facades\Route;
 		Route::get('/admin/reviewHide/{id}', 'reviewReportController@hide');
 		Route::get('/admin/reviewDelete/{id}', 'reviewReportController@delete');
 
+<<<<<<< HEAD
 	//Site Maintenance
 
 		Route::get('/admin/site_maintenance', 'adminController@siteMaintencance');
 		Route::get('/admin/site_maintenance/{status}', 'adminController@siteMaintencanceStatus');
+=======
+	//website Setting 
+	Route::get('/admin/websiteSetting', 'websiteSettingControlle@index');
+	Route::get('/admin/websiteSetting/update/{id}', 'websiteSettingControlle@udapte');	
+>>>>>>> 7362012579add8637f368b2fd6967a56779dffcb

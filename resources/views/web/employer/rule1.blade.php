@@ -20,7 +20,7 @@
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                   <div class="agency-box">
                      <img alt="agency-icon" src="{{URL::to('/')}}/assets/images/agency-icon6.jpg">
-                     <p> No more vague and misleading helper resumés, only verified nformation  </p>
+                     <p> No more vague and misleading helper resumes, only clear concise information  </p>
                   </div>
                </div>
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -32,7 +32,7 @@
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                   <div class="agency-box">
                      <img alt="agency-icon" src="{{URL::to('/')}}/assets/images/agency-icon7.jpg">
-                     <p> Don't worry about being bombarded with messages! We are keeping the initiative in your hands, it^s up to you to reach out to the helper or agency that you're interested in. </p>
+                     <p> Don't worry about being bombarded with messages! We are keeping the initiative in your hands, it's up to you to reach out to the helper or agency that you're interested in. </p>
                   </div>
                </div>
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">

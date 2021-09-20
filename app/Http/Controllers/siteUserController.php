@@ -12,7 +12,7 @@ class siteUserController extends Controller
     function employers(){
     	if(Auth::guard('admin')->check()){
 
-    		$databelt = User::where('type', '1')->where('status', '!=', '3')->orderBy('created_at', 'desc')->get();
+    		$databelt = User::with(['skills'])->where('type', '1')->where('status', '!=', '3')->orderBy('created_at', 'desc')->get();
 
     		return view('admin.siteUsers.employers.list', ['databelt' => $databelt]);
     	}else{

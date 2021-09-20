@@ -14,7 +14,7 @@
          <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12 rule-sec-right">
             <div class="trophy-text">
                <h3 class="col-black"> Get Noticed by the Best Employers! </h3>
-               <p> Create a profile to stand out from the crowdand put your best self forward </p>
+               <p> Create a profile to stand out from the crowd and put your best self forward </p>
             </div>
             <div class="row">
                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">

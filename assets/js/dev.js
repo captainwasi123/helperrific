@@ -160,8 +160,9 @@ $(document).ready(function(){
 
     //null profile
     $(document).on('click', '.null-profile', function() {
-        var cont = 'Please <a href="javascript:void(0)" class="open-login">login</a> to view profile';
-        $('.alert-modal').modal({
+      //  var cont = 'Please <a href="javascript:void(0)" class="open-login">login</a> to view profile';
+      var cont = 'You have viewed 5 profiles, please wait 30 days or upgrade to a premium account';
+     $('.alert-modal').modal({
             backdrop: 'static',
             keyboard: false
         });
@@ -184,13 +185,13 @@ $(document).ready(function(){
 
     //null star
     $(document).on('click', '.null-star', function() {
-        var cont = 'Upgrade to a <a href="javascript:void(0)" class="premium_account">premium account</a> for boost your helpers.';
+        var cont = 'Upgrade to a <a href="javascript:void(0)" class="premium_account">premium account</a>d to be able to display your current and star helpers:';
         $('.alert-modal').modal({
             backdrop: 'static',
             keyboard: false
         });
         $('.alert-modal').modal('show');
-        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert.! </h4><p> '+cont+'.</p>');
+        $('#alert_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Sorry! </h4><p> '+cont+'.</p>');
         
     });
 
@@ -259,7 +260,7 @@ $( "#register-form" ).submit(function( event ) {
             $('#r_error').html('Email already exists.');
             $('#r_error').css({display: 'block'});
         }else if(data == 'success'){
-            $('#r_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/success-gif.gif" class="success_gif" /><br><p> You are successfully registered. Please <a href="javascript:void(0)" class="open-login" data-dismiss="modal"> Sign In </a> here.</p></div>');
+            $('#r_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/success-gif.gif" class="success_gif" /><br><p> Account created. Please <a href="javascript:void(0)" class="open-login" data-dismiss="modal"> Sign In </a> here.</p></div>');
         }else if(data == 'nomatch'){
             $('#r_error').html('Password does not match.');
             $('#r_error').css({display: 'block'});
@@ -300,7 +301,11 @@ $( "#login-form" ).submit(function( event ) {
 
     // Put the results in a div
     posting.done(function( data ) {
-        if(data == 'incorrect'){
+        if(data == 'error'){
+            $('#l_error').html('Account has been suspended, please contact site administrator.');
+            $('#l_error').css({display: 'block'});
+            return false;
+        }if(data == 'incorrect'){
             $('#l_error').html('Email or Password is incorrect.');
             $('#l_error').css({display: 'block'});
         }else{
@@ -535,6 +540,29 @@ $(document).on('change', '.agency_filter', function() {
         console.log(error);
     });
 });
+
+//employerFilter
+
+$(document).on('change', '.employer_filter', function() {
+    
+    $('#content_block').html('<div class="r_success_block"><img src="'+host+'/assets/images/search-loader.gif" class="search_gif" />');
+    // Get some values from elements on the page:
+    
+      var token = $("#token").val();
+      var location = $("#location").val();
+  
+      var datastrings = {_token:token, elocation:location};
+      // Send the data using post
+      var posting = $.post( host+'/employers', datastrings );
+  
+      // Put the results in a div
+      posting.done(function( data ) {
+          $('#content_block').html(data);
+      })
+      .fail(function(error) {
+          console.log(error);
+      });
+  });
 
 
 

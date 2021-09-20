@@ -1,4 +1,4 @@
-@extends('web.support.regMaster')
+@extends('web.support.master')
 @section('title', 'Helper Profile')
 
 @section('content')
@@ -31,9 +31,19 @@
                      </div>
                      <div class="about-profile-name">
                         <h4> {{Auth::user()->fname}} {{Auth::user()->lname}}</h4>
-                        <h6> {{!empty(Auth::user()->details) && !empty(Auth::user()->details->count) ? Auth::user()->details->count->country : '-'}} </h6>
+                        <h6> {{!empty(Auth::user()->details) && !empty(Auth::user()->details->count) ? Auth::user()->details->count->country : '-'}}   
+                        @if($check_a != 0)
+                          <strong style=" margin-left: 27px; ">{{Auth::user()->agency->agency->company}}</strong> 
+                        @endif
+                        </h6> 
                         <a href="{{URL::to('/helper/form_1')}}" class="normal-btn bg-primary col-white"> Update Info </a>
                         <br><br>
+                        @if($check_a == 0)
+                        <div class="alert alert-warning">
+                        If you are affiliated with you an agency, you should invite them to display you affiliation by searching for them and clicking on the button that says "Join".
+                        </div>
+                        <br><br>
+                        @endif
                         <div class="row">
                           <div class="col-md-6">
                             <label>Availability:</label><br>
@@ -94,6 +104,7 @@
                         <li role="presentation" class="active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab">SKILLS & EXPERIENCE</a></li>
                         <li role="presentation"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab">PHOTOS</a></li>
                         <li role="presentation"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab">REVIEWS</a></li>
+                        <li role="presentation"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab">INVITES</a></li>
                      </ul>
                   </div>
                   <div class="profile-content">
@@ -123,7 +134,7 @@
                                  <div class="profile-about-text">
                                     <h3> Qualification </h3>
                                     @foreach(Auth::user()->qualification as $val)
-                                      <p> {{$val->qual->qualification}} </p>
+                                      <p> {{@$val->qual->qualification}} </p>
                                     @endforeach
                                  </div>
                               </div>
@@ -254,6 +265,51 @@
                               @endforeach
                            </div>
                         </div>
+                        <div class="tab-pane" id="tabs-4" role="tabpanel">
+                        <div class="row">
+                           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                              <div class="table-responsive">
+                                 <table class="table">
+                                    <thead>
+                                       <tr>
+                                          <th>#</th>
+                                          <th>Request</th>
+                                          <th>Request at</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       @php $s=1; @endphp
+                                       @foreach(Auth::user()->reviewInvitation as $val)
+                                          <tr>
+                                             <td>{{$s}}</td>
+                                             <td>
+                                                @if($val->requestBy->type == '3')
+                                                   <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
+                                                @else
+                                                   <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
+                                                @endif
+                                                   <div class="profile-block">
+                                                      <img src="{{URL::to('/')}}/public/profile_img/{{$val->requestBy->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
+                                                      <h4>{{$val->requestBy->type == '3' ? $val->requestBy->company : $val->requestBy->fname.' '.$val->requestBy->lname}}</h4>
+                                                      <span class="label label-warning">{{$val->requestBy->type == '3' ? 'Agency' : 'Helper'}}</span>
+                                                   </div>
+                                                </a>
+                                             </td>
+                                             <td>{{$val->created_at->diffForHumans()}}</td>
+                                          </tr>
+                                          @php $s++; @endphp
+                                       @endforeach
+                                       @if(count(Auth::user()->reviewInvitation) == 0)
+                                          <tr>
+                                             <td colspan="4">No Request Found.</td>
+                                          </tr>
+                                       @endif
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                      </div>
                   </div>
                </div>

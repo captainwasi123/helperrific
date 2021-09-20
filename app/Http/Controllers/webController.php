@@ -52,6 +52,7 @@ class webController extends Controller
             }
         }
         $filter = array();
+        $filter['expertise'] = skills::whereIn('id', ['1','3','15','13'])->get();
         $filter['skills'] = skills::all();
         $filter['availability'] = availability::all();
         $filter['countries'] = country::whereHas('users', function($qq){
@@ -125,6 +126,22 @@ class webController extends Controller
                         ->paginate(16);
         return view('web.response.agencyFilter', ['agencies' => $agencies, 'favors' => $favors]);
     }
+
+    function employersSearch(Request $request){
+        
+        $data = $request->all();
+        
+
+        $employers = User::where(['status' => '1', 'type' => '1'])
+                        ->when(!empty($data['elocation']), function ($q) use ($data) {
+                            return $q->whereHas('details', function($q) use ($data){
+                                        $q->where('country', $data['elocation']);
+                                    });
+                        })
+                        ->where('id', '!=', Auth::id())
+                        ->paginate(16);
+        return view('web.response.employerFilter', ['employers' => $employers]);
+    }
     
 
     function helperDetail($id, $name){
@@ -151,8 +168,9 @@ class webController extends Controller
                 }
 
                 $id = base64_decode($id);
-                $data = User::where(['status' => '1', 'id' => $id])->first();
-                return view('web.helper_profile', ['data' => $data, 'favors' => $favors]);
+                $data = User::with(['agency','agency.agency'])->where(['status' => '1', 'id' => $id])->first();
+                $invite = reviewInvitation::where(['request_to' => $id, 'request_by' => Auth::id()])->first();
+                return view('web.helper_profile', ['data' => $data, 'favors' => $favors, 'invite' => $invite]);
             }else{
                 return redirect('/');
             }
@@ -187,6 +205,23 @@ class webController extends Controller
 		return view('web.agencies', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
     }
 
+    function employers(){
+    	
+        $favors = array();
+        if(Auth::check()){
+            foreach(Auth::user()->favorite as $val){
+                array_push($favors, $val->favor_id);
+            }
+        }
+        $countries = country::whereHas('agencyUsers', function($qq){
+                        $qq->where('country', '!=', null);
+                    })->get();
+
+        $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->paginate(16);
+
+		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
+    }
+
     function agencyDetail($id, $name){
         if(Auth::check()){
             $eligible = false;
@@ -211,6 +246,7 @@ class webController extends Controller
                 }
                 $id = base64_decode($id);
                 $data = User::where(['status' => '1', 'id' => $id])->first();
+                $invite = reviewInvitation::where(['request_to' => $id, 'request_by' => Auth::id()])->first();
 
                 $curr_helper = joinHelper::where('agency_id', $id)
                                             ->where('status', '2')
@@ -223,7 +259,7 @@ class webController extends Controller
                                             ->orderBy('created_at', 'desc')
                                             ->get();
                                             
-                return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors]);
+                return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors,'invite' => $invite]);
             }else{
                 return redirect('/');
             }

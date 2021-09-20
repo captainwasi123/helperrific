@@ -71,6 +71,55 @@
                            </div>
                         </div>
 
+                        <!-- <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+                           <div class="form-field1">
+                              <div class="avatar-upload cover-upload">
+                                   <div class="avatar-edit  cover-uploader">
+                                       <input type='file' id="cover_pic" data-preview="coverPreview" accept=".png, .jpg, .jpeg" name="coverImage"  {{empty(Auth::user()->cover_img) ? 'required' : ''}}/>                                       
+                                       <label for="cover_pic"> <i class="fa fa-pencil-alt"> </i> </label>
+                                   </div>
+                                   <div class="cover-preview">
+                                       <div id="coverPreview" style="
+                                          @if(empty(Auth::user()->cover_img))
+                                            background-image: url('{{URL::to('/')}}/public/cover-placeholder.jpg');
+                                          @else
+                                            background-image: url('{{URL::to('/')}}/public/cover_img/{{Auth::user()->cover_img}}');
+                                          @endif
+                                       ">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                        </div> -->
+
+                     </div>
+                     <div class="row">
+                        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                           <div class="field-label1">
+                              <h4 style="margin-top: 60px;"> Cover Picture* </h4>
+                           </div>
+                        </div>
+                        <!-- <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                           <div class="form-field1">
+                              <div class="avatar-upload">
+                                   <div class="avatar-edit avatar-edit2">
+                                       <input type='file' id="profile_pic" data-preview="profilePreview" accept=".png, .jpg, .jpeg" name="profileImage"  {{empty(Auth::user()->profile_img) ? 'required' : ''}}/>                                       
+                                       <label for="profile_pic"> <i class="fa fa-pencil-alt"> </i> </label>
+                                   </div>
+                                   <div class="avatar-preview">
+                                       <div id="profilePreview" style="
+                                          @if(empty(Auth::user()->profile_img))
+                                            background-image: url('{{URL::to('/')}}/public/user-placeholder.jpg');
+                                          @else
+                                            background-image: url('{{URL::to('/')}}/public/profile_img/{{Auth::user()->profile_img}}');
+                                          @endif
+                                       ">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                        </div> -->
+
                         <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
                            <div class="form-field1">
                               <div class="avatar-upload cover-upload">

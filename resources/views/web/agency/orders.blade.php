@@ -1,4 +1,4 @@
-@extends('web.support.regMaster')
+@extends('web.support.master')
 @section('title', 'Requests History')
 
 @section('content')
@@ -7,7 +7,7 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <h2>Requests History</h2>
+            <h2>Request History</h2>
             <hr>
             <div class="profile-triggers">
                 <ul class="nav nav-tabs" role="tablist">
@@ -27,7 +27,7 @@
                             <tr>
                               <th>Request#</th>
                               <th>Employer</th>
-                              <th>Ordered at</th>
+                              <th>Requested at</th>
                               <th>Status</th>
                               <th>-</th>
                             </tr>

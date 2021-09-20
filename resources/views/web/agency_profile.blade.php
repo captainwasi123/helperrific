@@ -19,7 +19,16 @@
                   <a href="{{URL::to('/favorite/remove/'.base64_encode($data->id))}}" class="normal-btn bg-primary col-white"> Remove from favourites </a> 
                 @else
                   <a href="{{URL::to('/favorite/add/'.base64_encode($data->id))}}" class="normal-btn bg-primary col-white"> Save to favourites </a>
-                @endif
+                @endif <br> <br>
+                @if(Auth::check())
+                    @if(empty($invite->id))
+                      <a href="javascript:void(0)" class="normal-btn bg-primary col-white sendInvite" data-id="{{base64_encode($data->id)}}"> Send Invitation to review me </a>
+                    @else
+                      <div class="alert alert-warning">
+                        You have sent review invitaion {{$invite->created_at->diffForHumans()}}
+                      </div>
+                    @endif
+                  @endif
                 @if(Auth::check() && Auth::user()->type == '2')
                   <a href="javascript:void(0)" data-id="{{base64_encode($data->id)}}" class="normal-btn bg-primary col-white joinAgency"> Join </a>
                 @endif
@@ -150,10 +159,20 @@
                 </div>
                 <div class="tab-pane" id="tabs-4" role="tabpanel">
                    <div class="agency-reviews">
-                      <div class="agency-reviews-head">
-                         <h4> <b> {{number_format($rating_avg, 1)}} </b> Average </h4>
-                         <h4> <b> {{count($data->reviews)}} </b> Reviews </h4>
-                      </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <!-- if Auth: : check () & & Auth :: user ()-> type == '1' -->
+                            @if(Auth::check())
+                              <a href="javascript:void(0);" class="normal-btn bg-primary col-white writeReview" data-id="{{base64_encode($data->id)}}" data-name="{{$data->fname}} {{$data->lname}}"> Write review </a>
+                            @endif
+                          </div>
+                          <div class="col-md-6">
+                            <div class="agency-reviews-head">
+                               <h4> <b> {{number_format($rating_avg, 1)}} </b> Average </h4>
+                               <h4> <b> {{count($data->reviews)}} </b> Reviews </h4>
+                            </div>
+                          </div>
+                        </div>
                       @foreach($data->reviews as $val)
                          <div class="agency-review-box">
                              <div>
@@ -202,9 +221,21 @@
 
     $(document).on('click', '.joinAgency', function(){
       var id = $(this).data('id');
-      if(confirm('Are you sure want to join this agency?')){
-        window.location.href = '../../../agency/join/'+id;
-      }
+      swal({
+         title: "Are you sure?",
+         text: "want to join this agency!",
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+         })
+         .then((willDelete) => {
+         if (willDelete) {
+            window.location.href = '../../../agency/join/'+id;
+         }
+      });
+       
+      
+     
     });
 
   });

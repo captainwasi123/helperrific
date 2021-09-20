@@ -86,10 +86,10 @@
                required>
                <select name="category" required>
                   <option value="">Select Category</option>
-                  <option>Category 1</option>
-                  <option>Category 2</option>
-                  <option>Category 3</option>
-                  <option>Category 4</option>
+                  <option value="Premium features">Premium features</option>
+                  <option value="Report a user">Report a user</option>
+                  <option value="Help for technical issues">Help for technical issues</option>
+                  <option value="Other">Other</option>
                </select>
                <textarea name="description" required rows="5" placeholder="Type Description Here..."></textarea>
                <span id="e_error" class="error_span">Email already exists.</span>
