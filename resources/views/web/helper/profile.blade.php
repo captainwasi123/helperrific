@@ -273,8 +273,8 @@
                                     <thead>
                                        <tr>
                                           <th>#</th>
-                                          <th>Request</th>
-                                          <th>Request at</th>
+                                          <th>Invitations to review</th>
+                                          <th>Invited at</th>
                                        </tr>
                                     </thead>
                                     <tbody>

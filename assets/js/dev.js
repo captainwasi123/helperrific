@@ -185,7 +185,7 @@ $(document).ready(function(){
 
     //null star
     $(document).on('click', '.null-star', function() {
-        var cont = 'Upgrade to a <a href="javascript:void(0)" class="premium_account">premium account</a>d to be able to display your current and star helpers:';
+        var cont = 'Upgrade to a <a href="javascript:void(0)" class="premium_account">premium account</a> to be able to display your current and star helpers:';
         $('.alert-modal').modal({
             backdrop: 'static',
             keyboard: false

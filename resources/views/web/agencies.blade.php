@@ -94,7 +94,6 @@
                                       <span class="wishlist-box"> <input type="checkbox" class="makeFavorite" name="wishlist-add" value="1" data-id="{{base64_encode($data->id)}}">   </span> 
                                   @endif
                                 </div>
-                              <p> Starting Salary at <b> $84 </b> </p>
                            </div>
                         @endif
                      </div>

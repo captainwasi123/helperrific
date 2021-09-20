@@ -63,12 +63,12 @@
                                                         {{$data->fname.' '.$data->lname}}
                                                     </td>
                                                     <td>{{$data->email}}</td>
-                                                    <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
+                                                    <td>{{empty($data->details) ? '-' : @$data->details->count->country}}</td>
                                                     
                                                     <!-- Language -->
                                                     @for($x=0; $x<5; $x++)
                                                         <td class="export_fields">
-                                                            {{empty($data->langs[$x]) ? '' : $data->langs[$x]->language}}
+                                                            {{empty($data->langs[$x]) ? '' : @$data->langs[$x]->language}}
                                                         </td>
                                                     @endfor
 
@@ -76,7 +76,7 @@
                                                     <!-- Expertise Area -->
                                                     @for($x=0; $x<5; $x++)
                                                         <td class="export_fields">
-                                                            {{empty($data->expertise[$x]) ? '' : $data->expertise[$x]->skills->skill}}
+                                                            {{empty($data->expertise[$x]) ? '' : @$data->expertise[$x]->skills->skill}}
                                                         </td>
                                                     @endfor
 
@@ -84,7 +84,7 @@
                                                     <!-- Skills -->
                                                     @for($x=0; $x<8; $x++)
                                                         <td class="export_fields">
-                                                            {{empty($data->skills[$x]) ? '' : $data->skills[$x]->skills->skill}}
+                                                            {{empty($data->skills[$x]) ? '' : @$data->skills[$x]->skills->skill}}
                                                         </td>
                                                     @endfor
 
@@ -92,7 +92,7 @@
                                                     <!-- Qualification -->
                                                     @for($x=0; $x<4; $x++)
                                                         <td class="export_fields">
-                                                            {{empty($data->qualification[$x]) ? '' : $data->qualification[$x]->qual->qualification}}
+                                                            {{empty($data->qualification[$x]) ? '' : @$data->qualification[$x]->qual->qualification}}
                                                         </td>
                                                     @endfor
 
@@ -100,7 +100,7 @@
                                                     <!-- Education -->
                                                     @for($x=0; $x<5; $x++)
                                                         <td class="export_fields">
-                                                            {{empty($data->education[$x]->certificate) ? '' : $data->education[$x]->certificate}}
+                                                            {{empty($data->education[$x]->certificate) ? '' : @$data->education[$x]->certificate}}
                                                         </td>
                                                     @endfor
 

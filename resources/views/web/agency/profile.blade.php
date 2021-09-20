@@ -315,8 +315,8 @@
     $(document).on('click', '.approveRequest', function(){
       var id = $(this).data('id');
       swal({
-         title: "Are you sure?",
-         text: "want to confirm this request!",
+         title: "Are you sure your want to confirm this request?",
+         text: "",
          icon: "warning",
          buttons: true,
          dangerMode: true,
@@ -331,8 +331,8 @@
     $(document).on('click', '.rejectRequest', function(){
       var id = $(this).data('id');
       swal({
-         title: "Are you sure?",
-         text: "want to reject this request!",
+         title: "Are you sure your want to reject this request?",
+         text: "",
          icon: "warning",
          buttons: true,
          dangerMode: true,

@@ -60,6 +60,20 @@
                </div>
                <div class="account-block">
                   <div class="account-block-head">
+                     <h4> Account subscription </h4>
+                  </div>
+                  <div class="account-block-data">
+                     @if(empty(Auth::user()->premium))
+                        <p>You are currently using a free account.  <a href="javascript:void(0)" class="premium_account"> Premium Account </a></p>
+                     @else
+                        <p>
+                           You are currently using a premium account which expires on ({{date('d-M-Y', strtotime(Auth::user()->premium->end_date))}}). <a href="javascript:void(0)" class="premium_account">Click here</a> to extend your premium account subscription.
+                        </p>
+                     @endif
+                  </div>
+               </div>
+               <div class="account-block">
+                  <div class="account-block-head">
                      <h4> Account Private </h4>
                   </div>
                   <div class="account-block-data">

@@ -71,14 +71,14 @@
             <div class="row">
                <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                   <div class="field-label1">
-                     <h4 style="margin-top: 60px;"> Profile Picture* </h4>
+                     <h4 style="margin-top: 60px;"> Profile Picture </h4>
                   </div>
                </div>
                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                   <div class="form-field1">
                     <div class="avatar-upload">
                       <div class="avatar-edit avatar-edit2">
-                          <input type='file' id="profile_pic" data-preview="profilePreview" accept=".png, .jpg, .jpeg" name="profileImage"  {{empty(Auth::user()->profile_img) ? 'required' : ''}}/>                            
+                          <input type='file' id="profile_pic" data-preview="profilePreview" accept=".png, .jpg, .jpeg" name="profileImage" />                            
                           <label for="profile_pic"> <i class="fa fa-pencil"> </i> </label>
                       </div>
                       <div class="avatar-preview">

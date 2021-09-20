@@ -36,7 +36,6 @@ class agencyController extends Controller
 			$request = joinHelper::where('agency_id', Auth::id())->where('status', '1')->orderBy('created_at', 'desc')->get();
 			$curr_helper = joinHelper::where('agency_id', Auth::id())
 									->where('status', '2')
-									->where('star', null)
 									->orderBy('created_at', 'desc')
 									->get();
 			$star_helper = joinHelper::where('agency_id', Auth::id())
