@@ -37,32 +37,29 @@
 
 <div class="modal fade premium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
    <div class="modal-dialog modal-lg" role="document" style="max-width: 500px;">
-<<<<<<< HEAD
       <div class="modal-content" id="premium_content">
-         
-=======
-      <div class="modal-content" id="pre_content">
-         <div class="join-pop-head">
-            <h3> Premium Account </h3>
-            <p style="padding: 0 11px;">
-            @if(Auth::check())
-              @if(Auth::user()->type == '1')
-                Free employer accounts are limited to 5 profile views a month. Get premium to view unlimited profiles.
-              @endif
-              @if(Auth::user()->type == '3')
-                With premium accounts, potential employers will be able to see the helpers affiliated with your agency. You will also be able to promote your best helpers and get the most views from potential employers.
-              @endif
-            @endif  
-            </p>
-            <hr class="m-t-0 m-b-0">
+         <div class="modal-content" id="pre_content">
+            <div class="join-pop-head">
+               <h3> Premium Account </h3>
+               <p style="padding: 0 11px;">
+               @if(Auth::check())
+                 @if(Auth::user()->type == '1')
+                   Free employer accounts are limited to 5 profile views a month. Get premium to view unlimited profiles.
+                 @endif
+                 @if(Auth::user()->type == '3')
+                   With premium accounts, potential employers will be able to see the helpers affiliated with your agency. You will also be able to promote your best helpers and get the most views from potential employers.
+                 @endif
+               @endif  
+               </p>
+               <hr class="m-t-0 m-b-0">
 
+            </div>
+            <div id="premium_content">
+            </div>
+            <div>
+               <a href="javascript:void(0)" class="skip_btn" data-dismiss="modal" aria-label="Close">Skip ></a>
+            </div>
          </div>
-         <div id="premium_content">
-         </div>
-         <div>
-            <a href="javascript:void(0)" class="skip_btn" data-dismiss="modal" aria-label="Close">Skip ></a>
-         </div>
->>>>>>> 7362012579add8637f368b2fd6967a56779dffcb
       </div>
    </div>
 </div>

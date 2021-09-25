@@ -1,8 +1,3 @@
- @if($web_setting->is_live == 0)
-   <script type="text/javascript">
-    window.location = "{{ url('/maintenance') }}";
-   </script>
- @endif
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,14 +18,14 @@
 
       @yield('content')
 
+      <!-- Modals -->
+         @include('web.support.modal')
+
+
       <!-- Footer Section Starts Here -->
          @include('web.support.footer')
       <!-- Footer Section Ends Here -->
       
-
-      <!-- Modals -->
-         @include('web.support.modal')
-
       <!-- Bootstrap Javascript -->
       <!-- Jquery Library -->
          @include('web.support.script')
