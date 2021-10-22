@@ -194,7 +194,12 @@
                                        </div>
                                  </div>
                               </div>
-                              <div class="col-md-12">  
+                              <div class="col-md-12">
+                                <div class="uploader-title">
+                                   <h3> Other Images </h3>
+                                </div>    
+                              </div>
+                              <div class="col-md-12">
                                 <div class="file-uploader">
                                  <input type="file" 
                                   class="filepond filepond-uploader"

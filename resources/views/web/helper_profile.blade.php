@@ -88,7 +88,7 @@
                               <h3> Skills </h3>
                               <ul>
                                 @foreach($data->skills as $val)
-                                  <li> <b> . </b> {{$val->skills->skill}} </li>
+                                  <li> <b> . </b> {{@$val->skills->skill}} </li>
                                 @endforeach
 
                               </ul>
@@ -98,7 +98,7 @@
                            <div class="profile-about-text">
                               <h3> Qualification </h3>
                               @foreach($data->qualification as $val)
-                                <p> {{$val->qual->qualification}} </p>
+                                <p> {{@$val->qual->qualification}} </p>
                               @endforeach
                            </div>
                         </div>
@@ -178,7 +178,7 @@
                         @foreach($data->reviews as $val)
                            <div class="agency-review-box">
                                <div>
-                                  <h5> {{$val->buyer->fname.' '.$val->buyer->lname}} </h5>
+                                  <h5> {{@$val->buyer->fname.' '.@$val->buyer->lname}} </h5>
                                   <h6> {{$val->created_at->diffForHumans()}}  </h6>
                                   <p> 
                                     <strong>{{$val->description}}</strong>

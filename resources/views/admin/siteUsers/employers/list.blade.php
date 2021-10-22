@@ -17,6 +17,7 @@
                                                 <th>Full Name</th>
                                                 <th>Email</th>
                                                 <th>Country</th>
+                                                <th class="export_fields">Description</th>
                                                 <th>Looking Status</th>
                                                 <!-- <th>Skills</th> -->
                                                 <th>Status</th>
@@ -34,6 +35,7 @@
                                                     </td>
                                                     <td>{{$data->email}}</td>
                                                     <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
+                                                    <td class="export_fields">{{@$data->details->description}}</td>
                                                     <td>
                                                         <label class="badge badge-default">
                                                         @if(!empty($data->details))

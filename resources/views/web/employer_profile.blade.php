@@ -56,7 +56,7 @@
                       @foreach($data->ereviews as $val)
                         <div class="agency-review-box">
                            <div>
-                              <h5> {{$val->seller->type == '3' ? $val->seller->company : $val->seller->fname.' '.$val->seller->lname}} </h5>
+                              <h5> {{@$val->seller->type == '3' ? @$val->seller->company : @$val->seller->fname.' '.@$val->seller->lname}} </h5>
                               <h6> {{$val->created_at->diffForHumans()}}  </h6>
                               <p> 
                                 <strong>{{$val->description}}</strong>

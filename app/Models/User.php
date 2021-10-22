@@ -82,6 +82,11 @@ class User extends Authenticatable
         return $this->belongsTo(startSalary::class, 'id', 'user_id');
     }
 
+    //Agency
+    function curr_helpers(){
+        return $this->hasMany(joinHelper::class, 'agency_id', 'id');
+    }
+
 
     function premium(){
         return $this->belongsTo(userPremium::class, 'id', 'user_id')->where('status', '1');

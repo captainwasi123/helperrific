@@ -8,7 +8,7 @@
       <div class="row">
          <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 rule-sec-left">
             <div class="trophy-image">
-               <img alt="trophy-award" src="{{URL::to('/')}}/assets/images/trophy-award.jpg">
+               <img alt="trophy-award" src="{{URL::to('/')}}/assets/images/trophy-award.png">
             </div>
          </div>
          <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12 rule-sec-right">
@@ -29,6 +29,8 @@
                      <p> Check the ratings and reviews to make your next choice an easy one </p>
                   </div>
                </div>
+            </div>
+            <div class="row">
                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                   <div class="agency-box">
                      <img alt="agency-icon" src="{{URL::to('/')}}/assets/images/agency-icon7.jpg">

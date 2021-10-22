@@ -176,7 +176,7 @@
                       @foreach($data->reviews as $val)
                          <div class="agency-review-box">
                              <div>
-                                <h5> {{$val->buyer->fname.' '.$val->buyer->lname}} </h5>
+                                <h5> {{@$val->buyer->fname.' '.@$val->buyer->lname}} </h5>
                                 <h6> {{$val->created_at->diffForHumans()}}  </h6>
                                 <p> 
                                   <strong>{{$val->description}}</strong>

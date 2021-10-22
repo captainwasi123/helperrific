@@ -8,7 +8,7 @@
 <section class="banner-sec">
  <div class="container">
     <div class="banner-text">
-       <h3> I am Looking For </h3>
+       <h3> I am looking for </h3>
        <h6> 
          <a href="{{URL::to('/helpers')}}"> <img alt="helper-icon" src="{{URL::to('/')}}/assets/images/banner-icon1.jpg"> A Domestic Helper  </a>
          <a href="{{URL::to('/agencies')}}"> <img alt="agency-icon" src="{{URL::to('/')}}/assets/images/banner-icon2.jpg">  An Agency </a>  

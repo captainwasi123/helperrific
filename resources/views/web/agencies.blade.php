@@ -80,7 +80,7 @@
                                  </tr>
                                  <tr>
                                     <td> No of Available Helper </td>
-                                    <td class="col-blue"> <input type="number" value="2" readonly="" name=""> </td>
+                                    <td class="col-blue"> <input type="number" value="{{count($data->curr_helpers)}}" readonly="" name=""> </td>
                                  </tr>
                               </tbody>
                            </table>

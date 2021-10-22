@@ -21,6 +21,16 @@ class adminController extends Controller
                 'helper' => $user->where('type',2)->where('status',1)->count(),
                 'employer' => $user->where('type',1)->where('status',1)->count(),
                 'total_orders' => order::count(),
+                'paidAccount' => array(
+                    'agencies' => User::where('type', 3)
+                                        ->where('status', 1)
+                                        ->whereHas('premium')
+                                        ->count(),
+                    'employers' => User::where('type', 1)
+                                        ->where('status', 1)
+                                        ->whereHas('premium')
+                                        ->count(),
+                )
             );
     		return view('admin.index')->with($data);
     	}else{

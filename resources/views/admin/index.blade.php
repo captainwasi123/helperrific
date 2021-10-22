@@ -75,4 +75,67 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card-group">
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Free Account Subscription</h4>
+                            <div id="freeMembers"></div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Premium Account Subscription</h4>
+                            <div id="paidMembers"></div>
+                        </div>
+                    </div>
+                </div>
+@endsection
+@section('addStyle')
+    <link href="{{URL::to('/')}}/assets/admin/plugins/morrisjs/morris.css" rel="stylesheet">
+@endsection
+@section('addScript')
+    <script src="{{URL::to('/')}}/assets/admin/plugins/morrisjs/morris.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            'use strict'
+
+            Morris.Donut({
+                element: 'freeMembers',
+                data: [{
+                    label: "Helpers",
+                    value: {{$helper}},
+
+                }, {
+                    label: "Employers",
+                    value: {{$employer-$paidAccount['employers']}}
+                }, {
+                    label: "Agencies",
+                    value: {{$agency-$paidAccount['agencies']}}
+                }],
+                resize: true,
+                colors:['#26dad2', '#7460ee', '#ffb22b']
+            });
+
+
+            Morris.Donut({
+                element: 'paidMembers',
+                data: [{
+                    label: "Employers",
+                    value: {{$paidAccount['employers']}},
+
+                }, {
+                    label: "Agencies",
+                    value: {{$paidAccount['agencies']}}
+                }],
+                resize: true,
+                colors:['#26dad2', '#7460ee']
+            });
+
+
+
+        });
+    </script>
 @endsection

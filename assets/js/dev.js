@@ -150,7 +150,11 @@ $(document).ready(function(){
         
         $.get(host+"/premium/getPrice", function(data, status){
             if(status == 'success'){
-                $('#premium_content').html(data);
+                if(data == 'Error'){
+                    $('.premium-modal').modal('hide');          
+                }else{
+                    $('#premium_content').html(data);
+                }
             }else{
                 console.log('Something went wrong.');
             }
@@ -586,18 +590,18 @@ $(document).on('submit', '#premium_formm', function( event ) {
     // Put the results in a div
     posting.done(function( data ) {
         if(data == 'success'){
-            $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/success-gif.gif" class="success_gif" /><br><h4>Thank You.! </h4><p> You successfully subscribed premium.</p>');
+            $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/success-gif.gif" class="success_gif" /><br><h4>Thank You! </h4><p> You successfully subscribed premium.</p>');
             setTimeout(function(){
                 window.location.href = window.location.href;
             }, 1000);
         }else{
-             $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert.! </h4><p> Something went wrong.</p>');
+            $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert! </h4><p> Something went wrong.</p>');
 
         }
     })
     .fail(function(error) {
         console.log(error);
-        $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert.! </h4><p> Something went wrong.</p>');
+        $('#pre_content').html('<div class="r_success_block"><img src="'+host+'/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert! </h4><p> Something went wrong.</p>');
     });
 
 });

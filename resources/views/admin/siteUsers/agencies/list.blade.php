@@ -17,6 +17,8 @@
                                                 <th>Full Name</th>
                                                 <th>Email</th>
                                                 <th>Address</th>
+                                                <th class="export_fields">Description</th>
+                                                <th class="export_fields">Company Address</th>
                                                 <th>Country</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
@@ -35,6 +37,8 @@
                                                         {{$data->company}}
                                                     </td>
                                                     <td>{{$data->email}}</td>
+                                                    <td class="export_fields">{{@$data->details->description}}</td>
+                                                    <td class="export_fields">{{@$data->details->c_address}}</td>
                                                     <td>{{empty($data->details) ? '' : $data->details->e_address}}</td>
                                                     <td>{{empty($data->details) ? '-' : $data->details->count->country}}</td>
                                                     <td>
