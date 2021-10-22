@@ -9,6 +9,7 @@
       <ul>
          <li> <a href="{{URL::to('/helpers')}}"> Domestic Helpers </a> </li>
          <li> <a href="{{URL::to('/agencies')}}"> Agencies </a> </li>
+         <li> <a href="{{URL::to('/employers')}}"> Employers </a> </li>
       </ul>
    </div>
 </section>
