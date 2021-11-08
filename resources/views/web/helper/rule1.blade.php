@@ -2,13 +2,13 @@
 @section('title', 'Registration Rules 1')
 
 @section('content')
-
+ 
 <section class="p-t-60 p-b-80">
    <div class="container">
       <div class="row">
          <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 rule-sec-left">
             <div class="trophy-image">
-               <img alt="trophy-award" src="{{URL::to('/')}}/assets/images/trophy-award.jpg">
+               <img alt="trophy-award" src="{{URL::to('/')}}/assets/images/trophy-award.png">
             </div>
          </div>
          <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12 rule-sec-right">

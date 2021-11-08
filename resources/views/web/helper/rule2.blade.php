@@ -1,7 +1,7 @@
 @extends('web.support.regMaster')
 @section('title', 'Registration Rules 2')
 
-@section('content')
+@section('content') 
 
 <section class="p-t-60 p-b-80">
    <div class="container">

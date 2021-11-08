@@ -222,8 +222,8 @@
     $(document).on('click', '.joinAgency', function(){
       var id = $(this).data('id');
       swal({
-         title: "Are you sure?",
-         text: "want to join this agency!",
+         title: "Are you sure you want to join this agency?",
+         text: "",
          icon: "warning",
          buttons: true,
          dangerMode: true,

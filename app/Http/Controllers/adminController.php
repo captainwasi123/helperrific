@@ -10,6 +10,8 @@ use App\Models\siteMainten;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use App\Models\orders\order;
+use DB;
+use Carbon\Carbon;
 
 class adminController extends Controller
 {
@@ -21,6 +23,20 @@ class adminController extends Controller
                 'helper' => $user->where('type',2)->where('status',1)->count(),
                 'employer' => $user->where('type',1)->where('status',1)->count(),
                 'total_orders' => order::count(),
+
+                // count today month year
+
+                'agencytoday' => $user->where('type',3)->where('status',1)->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->count(),
+            'helpertoday' => $user->where('type',2)->where('status',1)->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->count(),
+            'employertoday' => $user->where('type',1)->where('status',1)->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->count(),
+            'agencyMonth' => $user->where('type',3)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count(),
+            'helperMonth' => $user->where('type',2)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count(),
+            'empMonth' => $user->where('type',1)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()])->count(),
+            'agencyYear' => $user->where('type',3)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->count(),
+            'helperYear' => $user->where('type',2)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->count(),
+            'empYear' => $user->where('type',1)->whereIn('status',1)->whereBetween('created_at', [Carbon::now()->startOfYear(), Carbon::now()->endOfYear()])->count(),
+
+
                 'paidAccount' => array(
                     'agencies' => User::where('type', 3)
                                         ->where('status', 1)
@@ -32,11 +48,18 @@ class adminController extends Controller
                                         ->count(),
                 )
             );
+
+
+
     		return view('admin.index')->with($data);
     	}else{
     		return redirect('admin\login');
     	}
     }
+
+
+
+
 
     function login(){
 
@@ -56,7 +79,7 @@ class adminController extends Controller
     function logout(){
     	if(Auth::guard('admin')->check()){
     		Auth::guard('admin')->logout();
-    		
+
     		return redirect('admin');
     	}else{
     		return redirect('admin\login');
@@ -66,7 +89,7 @@ class adminController extends Controller
 
     function users(){
         if(Auth::guard('admin')->check()){
-            
+
             $databelt = admin::where('status', '!=', '3')->get();
 
             return view('admin.users.list', ['databelt' => $databelt]);
@@ -77,7 +100,7 @@ class adminController extends Controller
 
     function addUsers(){
         if(Auth::guard('admin')->check()){
-            
+
             $roles = role::all();
 
             return view('admin.users.add', ['roles' => $roles]);
