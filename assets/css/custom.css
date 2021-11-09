@@ -2174,9 +2174,9 @@ span.wishlist-selected {
 section.banner-sec {
     padding: 100px 0px 260px 0px;
     background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 500px;
-    background-position-y: 15px;
+    background-position: bottom right;
+    background-size: 300px;
+    background-position-y: bottom;
 }
 header.header-style2 .search-form {
     float: right;
@@ -2264,7 +2264,7 @@ section.banner-sec {
     background-repeat: no-repeat;
     background-position: bottom right;
     background-position-y: bottom;
-    background-size: auto 400px;
+    background-size: auto 300px;
 }
 .banner-text h3 {
     font-size: 45px;
@@ -2719,4 +2719,43 @@ button.chat-toggle {
 .about-profile-name a {
     margin: 0px 10px 10px 0px !important;
 }
+.banner-text h6 a {
+    color: black;
+    letter-spacing: 0.4px;
+    font-size: 14px;
+    margin-right: 0px;
+    display: block;
 }
+}
+
+
+
+
+@media screen and (max-width:520px) and (min-width:400px) { 
+section.banner-sec {
+    background-position: bottom right;
+    background-position-y: bottom;
+    background-size: auto 55%;
+}
+}
+
+@media screen and (max-width:401px) and (min-width:360px) { 
+section.banner-sec {
+    background-position: bottom left;
+    background-position-y: bottom;
+    background-size: auto 55%;
+}
+}
+
+
+
+@media screen and (max-width:361px) and (min-width:300px) { 
+section.banner-sec {
+    background-position: bottom left;
+    background-position-y: bottom;
+    background-size: auto 50%;
+    padding-bottom: 360px !important;
+}
+}
+
+
