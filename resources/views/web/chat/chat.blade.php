@@ -63,24 +63,10 @@
                </div>
                <div class="chat-actions">
                <a type="button" class="follow_up" data-chat_type="3" data-receiver="{{$receiver}}"> <i class="far fa-star"></i> </a>
-               <a type="button" class="follow_up" data-chat_type="2" data-receiver="{{$receiver}}"> <i class="far fa-envelope-open"></i> </a>
-               <a type="button" class="follow_up" data-chat_type="4" data-receiver="{{$receiver}}"> <i class="fas fa-inbox"></i> </a>
+               <!-- <a type="button" class="follow_up" data-chat_type="2" data-receiver="{{$receiver}}"> <i class="far fa-envelope-open"></i> </a>
+               <a type="button" class="follow_up" data-chat_type="4" data-receiver="{{$receiver}}"> <i class="fas fa-inbox"></i> </a> -->
                <a type="button" id="delete_chat" data-receiver="{{$receiver}}"> <i class="far fa-trash-alt"></i> </a>
-               <a type="button" class="follow_up" data-chat_type="5" data-receiver="{{$receiver}}"> <i class="fas fa-tag"></i> </a>
-                  <!-- <div class="dropdown">
-                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <i class="fas fa-ellipsis-h"></i>
-                     </button>
-                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        @if(Auth::user()->type == '1')  
-                           <li><a href="{{URL::to('/employer/requests')}}">Active Requests</a></li>                    
-                        @elseif(Auth::user()->type == '2')
-                           <li><a href="{{URL::to('/helper/requests')}}">Active Requests</a></li>                     
-                        @elseif(Auth::user()->type == '3')
-                           <li><a href="{{URL::to('/agency/requests')}}">Active Requests</a></li> 
-                        @endif
-                     </ul>
-                  </div> -->
+               <!-- <a type="button" class="follow_up" data-chat_type="5" data-receiver="{{$receiver}}"> <i class="fas fa-tag"></i> </a> -->
                </div>
             </div>
             <div class="message-wrapper-bottom">

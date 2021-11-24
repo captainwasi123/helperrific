@@ -102,24 +102,32 @@
                                     <tbody>
                                        @php $s=1; @endphp
                                        @foreach(Auth::user()->reviewInvitation as $val)
-                                          <tr>
-                                             <td>{{$s}}</td>
-                                             <td>
-                                                @if($val->requestBy->type == '3')
-                                                   <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
-                                                @else
-                                                   <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
-                                                @endif
-                                                   <div class="profile-block">
-                                                      <img src="{{URL::to('/')}}/public/profile_img/{{$val->requestBy->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
-                                                      <h4>{{$val->requestBy->type == '3' ? $val->requestBy->company : $val->requestBy->fname.' '.$val->requestBy->lname}}</h4>
-                                                      <span class="label label-warning">{{$val->requestBy->type == '3' ? 'Agency' : 'Helper'}}</span>
-                                                   </div>
-                                                </a>
-                                             </td>
-                                             <td>{{$val->created_at->diffForHumans()}}</td>
-                                          </tr>
-                                          @php $s++; @endphp
+                                          @if(!empty($val->requestBy->id))
+                                             <tr>
+                                                <td>{{$s}}</td>
+                                                <td>
+                                                   @if($val->requestBy->type == '3')
+                                                      <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
+                                                   @else
+                                                      <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
+                                                   @endif
+                                                      <div class="profile-block">
+                                                         <img src="{{URL::to('/')}}/public/profile_img/{{$val->requestBy->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
+                                                         <h4>
+                                                            @if($val->requestBy->type == '3')
+                                                               {{empty($val->requestBy->company) ? 'New Agency' : $val->requestBy->company}}
+                                                             @else
+                                                               {{empty($val->requestBy->fname) ? 'New User' : $val->requestBy->fname.' '.$val->requestBy->lname}}
+                                                             @endif
+                                                         </h4>
+                                                         <span class="label label-warning">{{$val->requestBy->type == '3' ? 'Agency' : 'Helper'}}</span>
+                                                      </div>
+                                                   </a>
+                                                </td>
+                                                <td>{{$val->created_at->diffForHumans()}}</td>
+                                             </tr>
+                                             @php $s++; @endphp
+                                          @endif
                                        @endforeach
                                        @if(count(Auth::user()->reviewInvitation) == 0)
                                           <tr>

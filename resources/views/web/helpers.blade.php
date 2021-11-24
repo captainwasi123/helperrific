@@ -77,7 +77,11 @@
                            <a href="{{URL::to('/helpers/detail/'.base64_encode($data->id).'/'.$data->fname.' '.$data->lname)}}">
                         @endif
                      @else
-                        <a href="javascript:void(0)" class="null-profile">
+                        @if($publicVisit < 5)
+                           <a href="{{URL::to('/helpers/detail/'.base64_encode($data->id).'/'.$data->fname.' '.$data->lname)}}">
+                        @else
+                           <a href="javascript:void(0)" class="null-profile">
+                        @endif
                      @endif
                        <div class="listing-box">
                           <div class="listing-head">

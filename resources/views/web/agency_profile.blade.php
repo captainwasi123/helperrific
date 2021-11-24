@@ -109,15 +109,17 @@
                    <div class="row">
                      @if(!empty($data->premium))
                         @foreach($curr_helper as $val)
+                           @if(!empty($val->helper->fname))
                              <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
                                 <div class="helper-box">
                                    <img alt="agency-avatar" class="h_profile" width="100" src="{{URL::to('/')}}/public/profile_img/{{$val->helper->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
                                    <h4> {{$val->helper->fname}} {{$val->helper->lname}} </h4>
                                    <h5> {{!empty($val->helper->details) && !empty($val->helper->details->count) ? $val->helper->details->count->country : '-'}} </h5>
-                                   <h6> <b class="star-onn"> <i class="fa fa-star star-onn"> </i> 5.0 </b> (285) </h6>
+                                   <h6> <b class="star-onn"> <i class="fa fa-star star-onn"> </i> {{empty($val->helper->avgRating) ? '0.0' : number_format($val->helper->avgRating[0]->aggregate, 1)}} </b> ({{count($val->helper->reviews)}}) </h6>
                                    
                                 </div>
                              </div>
+                           @endif
                        @endforeach
                        @if(count($curr_helper) == '0')
                           <div class="col-md-12">
@@ -135,15 +137,17 @@
                    <div class="row">
                      @if(!empty($data->premium))
                        @foreach($star_helper as $val)
-                          <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
-                             <div class="helper-box">
-                                <img alt="agency-avatar" class="h_profile" width="100" src="{{URL::to('/')}}/public/profile_img/{{$val->helper->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">                                 <span class="star-helper-icon"> <img src="{{URL::to('/')}}/assets/images/star-helper-icon.png"> </span>
-                                <h4> {{$val->helper->fname}} {{$val->helper->lname}} </h4>
-                                <h5> {{!empty($val->helper->details) && !empty($val->helper->details->count) ? $val->helper->details->count->country : '-'}}  </h5>
-                                <h6> <b class="star-onn"> <i class="fa fa-star star-onn"> </i> {{empty($val->helper->avgRating) ? '0.0' : number_format($val->helper->avgRating[0]->aggregate, 1)}} </b> ({{count($val->helper->reviews)}}) </h6>
-                                
+                           @if(!empty($val->helper->fname))
+                             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="helper-box">
+                                   <img alt="agency-avatar" class="h_profile" width="100" src="{{URL::to('/')}}/public/profile_img/{{$val->helper->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">                                 <span class="star-helper-icon"> <img src="{{URL::to('/')}}/assets/images/star-helper-icon.png"> </span>
+                                   <h4> {{$val->helper->fname}} {{$val->helper->lname}} </h4>
+                                   <h5> {{!empty($val->helper->details) && !empty($val->helper->details->count) ? $val->helper->details->count->country : '-'}}  </h5>
+                                   <h6> <b class="star-onn"> <i class="fa fa-star star-onn"> </i> {{empty($val->helper->avgRating) ? '0.0' : number_format($val->helper->avgRating[0]->aggregate, 1)}} </b> ({{count($val->helper->reviews)}}) </h6>
+                                   
+                                </div>
                              </div>
-                          </div>
+                           @endif
                        @endforeach
                        @if(count($star_helper) == '0')
                           <div class="col-md-12">

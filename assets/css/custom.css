@@ -2598,9 +2598,10 @@ section.partner-logo-sec span img {
 section.banner-sec {
     padding: 60px 0px 400px 0px;
     background-repeat: no-repeat;
-    background-position: bottom right;
-    background-position-y: bottom;
-    background-size: auto 400px;
+    background-position: top right;
+    background-position-y: 160px;
+    background-position-x: 133px;
+    background-size: auto 260px;
 }
 .banner-text h3 {
     font-size: 40px;

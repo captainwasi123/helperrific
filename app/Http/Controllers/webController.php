@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Auth;
 use Hash;
 use App\Models\User;
@@ -15,6 +15,7 @@ use App\Models\employer\viewCount;
 use App\Models\employer\reviewInvitation;
 use App\Models\reviewReport;
 use App\Models\siteMainten;
+use App\Models\publicVisit;
 
 
 
@@ -28,10 +29,17 @@ class webController extends Controller
 
     function helpers(){
     	$favors = array();
+        $publicVisit =0;
         if(Auth::check()){
             foreach(Auth::user()->favorite as $val){
                 array_push($favors, $val->favor_id);
             }
+        }else{
+            $ip = Request::ip();
+            $publicVisit = publicVisit::where('ip_address', $ip)
+                        ->where('date', '>=', date('Y-m-1'))
+                        ->where('date', '<=', date('Y-m-31'))
+                        ->count();
         }
         $filter = array();
         $filter['skills'] = skills::all();
@@ -41,7 +49,7 @@ class webController extends Controller
                                 $qq->where('country', '!=', null);
                             })->get();
         $helpers = User::where(['status' => '1', 'type' => '2'])->where('id', '!=', Auth::id())->where('fname', '!=', null)->paginate(16);
-		return view('web.helpers', ['helpers' => $helpers, 'favors' => $favors, 'filter' => $filter]);
+		return view('web.helpers', ['helpers' => $helpers, 'favors' => $favors, 'filter' => $filter, 'publicVisit' => $publicVisit]);
     }
 
     function helpersCat($cat){
@@ -175,7 +183,26 @@ class webController extends Controller
                 return redirect('/');
             }
         }else{
-            return redirect('/');
+            $eligible = false;
+            $ip = Request::ip();
+
+            $vc = publicVisit::where('ip_address', $ip)
+                    ->where('date', '>=', date('Y-m-1'))
+                    ->where('date', '<=', date('Y-m-31'))
+                    ->count();
+            if($vc < 5){
+                $eligible = true;
+                publicVisit::addCount(base64_decode($id), $ip);
+            }
+
+            if($eligible){
+                $favors = array();
+                $id = base64_decode($id);
+                $data = User::with(['agency','agency.agency'])->where(['status' => '1', 'id' => $id])->first();
+                return view('web.helper_profile', ['data' => $data, 'favors' => $favors]);
+            }else{
+                return redirect('/');
+            }
         }
     }
     
@@ -250,7 +277,6 @@ class webController extends Controller
 
                 $curr_helper = joinHelper::where('agency_id', $id)
                                             ->where('status', '2')
-                                            ->where('star', null)
                                             ->orderBy('created_at', 'desc')
                                             ->get();
                     $star_helper = joinHelper::where('agency_id', $id)
