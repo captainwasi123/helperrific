@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     //Agency
     function curr_helpers(){
-        return $this->hasMany(joinHelper::class, 'agency_id', 'id');
+        return $this->hasMany(joinHelper::class, 'agency_id', 'id')->where('status', '2');
     }
 
 
