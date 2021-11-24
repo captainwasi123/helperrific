@@ -59,7 +59,11 @@
                         <a href="{{URL::to('/agencies/detail/'.base64_encode($data->id).'/'.$data->company)}}">
                      @endif
                   @else
-                     <a href="javascript:void(0)" class="null-profile">
+                     @if($publicVisit < 5)
+                        <a href="{{URL::to('/agencies/detail/'.base64_encode($data->id).'/'.$data->company)}}">
+                     @else
+                        <a href="javascript:void(0)" class="null-profile">
+                     @endif
                   @endif
                      <div class="listing-box">
                         <div class="listing-head">

@@ -218,10 +218,17 @@ class webController extends Controller
     function agencies(){
     	
         $favors = array();
+        $publicVisit = 0;
         if(Auth::check()){
             foreach(Auth::user()->favorite as $val){
                 array_push($favors, $val->favor_id);
             }
+        }else{
+            $ip = Request::ip();
+            $publicVisit = publicVisit::where('ip_address', $ip)
+                        ->where('date', '>=', date('Y-m-1'))
+                        ->where('date', '<=', date('Y-m-31'))
+                        ->count();
         }
         $countries = country::whereHas('agencyUsers', function($qq){
                         $qq->where('country', '!=', null);
@@ -229,7 +236,7 @@ class webController extends Controller
 
         $agencies = User::where(['status' => '1', 'type' => '3'])->where('company', '!=', null)->where('id', '!=', Auth::id())->paginate(16);
 
-		return view('web.agencies', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
+		return view('web.agencies', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries, 'publicVisit' => $publicVisit]);
     }
 
     function employers(){
@@ -246,7 +253,7 @@ class webController extends Controller
 
         $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->paginate(16);
 
-		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
+		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries, 'publicVisit' => $publicVisit]);
     }
 
     function agencyDetail($id, $name){
@@ -290,7 +297,39 @@ class webController extends Controller
                 return redirect('/');
             }
         }else{
-            return redirect('/');
+
+            $eligible = false;
+            $ip = Request::ip();
+
+            $vc = publicVisit::where('ip_address', $ip)
+                    ->where('date', '>=', date('Y-m-1'))
+                    ->where('date', '<=', date('Y-m-31'))
+                    ->count();
+            if($vc < 5){
+                $eligible = true;
+                publicVisit::addCount(base64_decode($id), $ip);
+            }
+
+            if($eligible){
+                $favors = array();
+                $id = base64_decode($id);
+                $data = User::where(['status' => '1', 'id' => $id])->first();
+                $invite = array();
+
+                $curr_helper = joinHelper::where('agency_id', $id)
+                                            ->where('status', '2')
+                                            ->orderBy('created_at', 'desc')
+                                            ->get();
+                    $star_helper = joinHelper::where('agency_id', $id)
+                                            ->where('status', '2')
+                                            ->where('star', '1')
+                                            ->orderBy('created_at', 'desc')
+                                            ->get();
+                                            
+                return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors,'invite' => $invite]);
+            }else{
+                return redirect('/');
+            }
         }
     }
 
