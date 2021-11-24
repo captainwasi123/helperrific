@@ -13,6 +13,7 @@ class publicVisit extends Model
 
     public static function addCount($id, $ip){
         $data = publicVisit::where('profile_id', $id)
+                    ->where('ip_address', $ip)
                     ->where('date', '>=', date('Y-m-1'))
                     ->where('date', '<=', date('Y-m-31'))
                     ->count();
