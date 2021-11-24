@@ -85,7 +85,15 @@
                                  </tr>
                                  <tr>
                                     <td> No of Available Helper </td>
-                                    <td class="col-blue"> <input type="number" value="{{count($data->curr_helpers)}}" readonly="" name=""> </td>
+                                    
+                                    <td class="col-blue">
+                                       @php $helperCount = 0; @endphp
+                                       @foreach($data->curr_helpers as $hc)
+                                          @if(!empty($hc->helper->id))
+                                             @php $helperCount++; @endphp
+                                          @endif
+                                       @endforeach
+                                     <input type="number" value="{{$helperCount}}" readonly="" name=""> </td>
                                  </tr>
                               </tbody>
                            </table>
