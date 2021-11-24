@@ -48,7 +48,7 @@ class webController extends Controller
         $filter['countries'] = country::whereHas('helperUsers', function($qq){
                                 $qq->where('country', '!=', null);
                             })->get();
-        $helpers = User::where(['status' => '1', 'type' => '2'])->where('id', '!=', Auth::id())->where('fname', '!=', null)->paginate(16);
+        $helpers = User::where(['status' => '1', 'type' => '2'])->where('id', '!=', Auth::id())->get();
 		return view('web.helpers', ['helpers' => $helpers, 'favors' => $favors, 'filter' => $filter, 'publicVisit' => $publicVisit]);
     }
 
@@ -234,7 +234,7 @@ class webController extends Controller
                         $qq->where('country', '!=', null);
                     })->get();
 
-        $agencies = User::where(['status' => '1', 'type' => '3'])->where('company', '!=', null)->where('id', '!=', Auth::id())->paginate(16);
+        $agencies = User::where(['status' => '1', 'type' => '3'])->where('id', '!=', Auth::id())->get();
 
 		return view('web.agencies', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries, 'publicVisit' => $publicVisit]);
     }
@@ -251,7 +251,7 @@ class webController extends Controller
                         $qq->where('country', '!=', null);
                     })->get();
 
-        $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->paginate(16);
+        $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->get();
 
 		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries, 'publicVisit' => $publicVisit]);
     }
