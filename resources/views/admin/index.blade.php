@@ -76,6 +76,45 @@
                     </div>
                 </div>
 
+
+    <div class="card table-responsive">
+     <div class="card-body">
+     <h4 class="card-title">New Registration</h4>
+         <table class="table table-hover ">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">User Type</th>
+                    <th scope="col">Today</th>
+                    <th scope="col">This Month</th>
+                    <th scope="col">This Year</th>
+                    </tr>
+                </thead>
+             <tbody>
+                    <tr>
+                    <th >Helper</th>
+                    <td>{{ $helpertoday }}</td>
+                    <td>{{ $helperMonth }}</td>
+                    <td>{{ $helperYear }}</td>
+                    
+                    </tr>
+                    <tr>
+                    <th >Agency</th>
+                    <td>{{ $agencytoday }}</td>
+                    <td>{{ $agencyMonth }}</td>
+                    <td>{{ $agencyYear }}</td>
+                    
+                    </tr>
+                    <tr>
+                    <th >Employee</th>
+                    <td >{{ $employertoday }}</td>
+                    <td>{{ $empMonth }}</td>
+                    <td>{{ $empYear }}</td>
+
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+    </div>
                 <div class="card-group">
                     
                     <div class="card">

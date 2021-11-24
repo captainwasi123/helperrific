@@ -191,6 +191,7 @@ use Illuminate\Support\Facades\Route;
 	// Authentication
 
 		Route::get('/admin', 'adminController@index');
+		// Route::get('/datewiseuser', 'adminController@datewiseuser');
 		Route::get('/admin/login', 'adminController@login');
 		Route::get('/admin/logout', 'adminController@logout');
 
