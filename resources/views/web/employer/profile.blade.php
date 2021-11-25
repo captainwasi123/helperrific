@@ -107,10 +107,10 @@
                                                 <td>{{$s}}</td>
                                                 <td>
                                                    @if($val->requestBy->type == '3')
-                                                      <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id).'/'.$val->requestBy->company)}}" target="_blank">
-                                                   @else
-                                                      <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id).'/'.$val->requestBy->fname.' '.$val->requestBy->lname)}}" target="_blank">
-                                                   @endif
+                                                     <a href="{{URL::to('/agencies/detail/'.base64_encode(@$val->requestBy->id))}}/{{empty($val->requestBy->company) ? 'New User' : $val->requestBy->company}}" target="_blank">
+                                                  @else
+                                                     <a href="{{URL::to('/helpers/detail/'.base64_encode($val->requestBy->id))}}/{{empty($val->requestBy->fname) ? 'New User' : $val->requestBy->fname.' '.$val->requestBy->lname}}" target="_blank">
+                                                  @endif
                                                       <div class="profile-block">
                                                          <img src="{{URL::to('/')}}/public/profile_img/{{$val->requestBy->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';">
                                                          <h4>

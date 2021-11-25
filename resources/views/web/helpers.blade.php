@@ -141,6 +141,21 @@
   </section>
   <!-- Page Content Ends Here -->
 
+@endsection
+@section('addScript')
+   @if(session()->has('limit'))
+      <script type="text/javascript">
+         $(document).ready(function(){
 
-
+            var cont = 'You have viewed 5 profiles, please wait 30 days or upgrade to a premium account';
+            $('.alert-modal').modal({
+               backdrop: 'static',
+               keyboard: false
+            });
+            $('.alert-modal').modal('show');
+            $('#alert_content').html('<div class="r_success_block"><img src="{{URL::to('/')}}/assets/images/error-loader.gif" class="success_gif" /><br><h4>Alert! </h4><p> '+cont+'.</p>');
+             
+         });
+      </script>
+   @endif
 @endsection

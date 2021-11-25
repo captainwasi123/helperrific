@@ -201,7 +201,7 @@ class webController extends Controller
                 $data = User::with(['agency','agency.agency'])->where(['status' => '1', 'id' => $id])->first();
                 return view('web.helper_profile', ['data' => $data, 'favors' => $favors]);
             }else{
-                return redirect('/');
+                return redirect()->back()->with('limit', 'ture');
             }
         }
     }
@@ -328,7 +328,7 @@ class webController extends Controller
                                             
                 return view('web.agency_profile', ['data' => $data, 'curr_helper' => $curr_helper, 'star_helper' => $star_helper, 'favors' => $favors,'invite' => $invite]);
             }else{
-                return redirect('/');
+                return redirect()->back()->with('limit', 'ture');
             }
         }
     }
