@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Request as RQ;
 use Auth;
 use Hash;
 use App\Models\User;
@@ -16,6 +16,7 @@ use App\Models\employer\reviewInvitation;
 use App\Models\reviewReport;
 use App\Models\siteMainten;
 use App\Models\publicVisit;
+use Illuminate\Http\Request;
 
 
 
@@ -35,7 +36,7 @@ class webController extends Controller
                 array_push($favors, $val->favor_id);
             }
         }else{
-            $ip = Request::ip();
+            $ip = RQ::ip();
             $publicVisit = publicVisit::where('ip_address', $ip)
                         ->where('date', '>=', date('Y-m-1'))
                         ->where('date', '<=', date('Y-m-31'))
@@ -184,7 +185,7 @@ class webController extends Controller
             }
         }else{
             $eligible = false;
-            $ip = Request::ip();
+            $ip = RQ::ip();
 
             $vc = publicVisit::where('ip_address', $ip)
                     ->where('date', '>=', date('Y-m-1'))
@@ -224,7 +225,7 @@ class webController extends Controller
                 array_push($favors, $val->favor_id);
             }
         }else{
-            $ip = Request::ip();
+            $ip = RQ::ip();
             $publicVisit = publicVisit::where('ip_address', $ip)
                         ->where('date', '>=', date('Y-m-1'))
                         ->where('date', '<=', date('Y-m-31'))
@@ -253,7 +254,7 @@ class webController extends Controller
 
         $agencies = User::where(['status' => '1', 'type' => '1'])->where('id', '!=', Auth::id())->get();
 
-		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries, 'publicVisit' => $publicVisit]);
+		return view('web.employers', ['agencies' => $agencies, 'favors' => $favors, 'countries' => $countries]);
     }
 
     function agencyDetail($id, $name){
@@ -299,7 +300,7 @@ class webController extends Controller
         }else{
 
             $eligible = false;
-            $ip = Request::ip();
+            $ip = RQ::ip();
 
             $vc = publicVisit::where('ip_address', $ip)
                     ->where('date', '>=', date('Y-m-1'))

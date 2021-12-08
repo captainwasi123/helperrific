@@ -26,9 +26,9 @@
                      @if($val->sender_id != Auth::id())
                         @if(!in_array($val->sender_id, $list_item))
                            <div>
-                              <a href="{{URL::to('/inbox/chat/'.base64_encode($val->sender->id))}}/{{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname.' '.$val->sender->lname}}">
+                              <a href="{{URL::to('/inbox/chat/'.base64_encode($val->sender->id))}}/{{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname }}">
                                  <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$val->sender->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/>
-                                 <h6> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname.' '.$val->sender->lname}}  </h6>
+                                 <h6> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname}}  </h6>
                                  <p title="{{$val->message}}"> {{$val->message}} </p>
                                  <span class="time-tag"> {{$val->created_at->diffForHumans()}} </span>
                               </a>
@@ -38,9 +38,9 @@
                      @else
                         @if(!in_array($val->receiver_id, $list_item))
                            <div>
-                              <a href="{{URL::to('/inbox/chat/'.base64_encode($val->receiver->id))}}/{{$val->receiver->type == '3' ? $val->receiver->company : $val->receiver->fname.' '.$val->receiver->lname}}">
+                              <a href="{{URL::to('/inbox/chat/'.base64_encode($val->receiver->id))}}/{{$val->receiver->type == '3' ? $val->receiver->company : $val->receiver->fname }}">
                                  <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$val->receiver->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/>
-                                 <h6> {{$val->receiver->type == '3' ? $val->receiver->company : $val->receiver->fname.' '.$val->receiver->lname}}  </h6>
+                                 <h6> {{$val->receiver->type == '3' ? $val->receiver->company : $val->receiver->fname}}  </h6>
                                  <p title="{{$val->message}}">{{$val->message}} </p>
                                  <span class="time-tag"> {{$val->created_at->diffForHumans()}} </span>
                               </a>
@@ -58,7 +58,7 @@
             </div>
             <div class="message-wrapper-top">
                <div class="chat-person-name">
-                  <h5> {{$user->type == '3' ? $user->company : $user->fname.' '.$user->lname}} </h5>
+                  <h5> {{$user->type == '3' ? $user->company : $user->fname}} </h5>
                   <p> Last seen 15m ago </p>
                </div>
                <div class="chat-actions">
@@ -81,7 +81,7 @@
                            @if($val->receiver_id == Auth::id())
                               <div class="sender-message1">
                                  <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$val->sender->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/>
-                                 <h5> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname.' '.$val->sender->lname}} <span class="col-grey"> {{$val->created_at->diffForHumans()}} </span> </h5>
+                                 <h5> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname }} <span class="col-grey"> {{$val->created_at->diffForHumans()}} </span> </h5>
                                  <div class="chat-message-1">
                                     @if(!empty($val->file_attach))
                                        <div class="chatAttach">
@@ -105,7 +105,7 @@
                            @else
                               <div class="sender-message2">
                                  <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$val->sender->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/>
-                                 <h5> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname.' '.$val->sender->lname}} <span class="col-grey"> {{$val->created_at->diffForHumans()}} </span> </h5>
+                                 <h5> {{$val->sender->type == '3' ? $val->sender->company : $val->sender->fname }} <span class="col-grey"> {{$val->created_at->diffForHumans()}} </span> </h5>
                                  @if(!empty($val->file_attach))
                                     <div class="chatAttach">
                                        <span>{{$val->file_name}}</span>
@@ -137,7 +137,7 @@
                </div>
                <div class="about-welcome max-height1">
                   <h3> About </h3>
-                  <h5> <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$user->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/> {{$user->type == '3' ? $user->company : $user->fname.' '.$user->lname}} </h5>
+                  <h5> <img alt="user-profile-avatar" src="{{URL::to('/')}}/public/profile_img/{{$user->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"/> {{$user->type == '3' ? $user->company : $user->fname}} </h5>
                   <table>
                      <tbody>
                         <tr>

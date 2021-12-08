@@ -88,7 +88,7 @@
                      </div>
                      <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                           <select name="skills[]">
+                           <select name="skills[]" required>
                               <option value="" disabled selected> Select Skill  </option>
                               @foreach($skills as $val)
                                 <option value="{{$val->id}}">{{$val->skill}}</option>
@@ -98,7 +98,7 @@
                      </div>
                      <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                         <div class="form-field1">
-                        <select name="skills_exp[]">
+                        <select name="skills_exp[]" required>
                            <option value="" disabled selected> Years of Experience </option>
                            <option value="1"> 1 Year</option>
                            <option value="2"> 2 Years</option>
@@ -121,7 +121,7 @@
 
                      <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                         <div class="form-field1">
-                        <input type="text" placeholder="Details" name="skills_detail[]">
+                        <input type="text" placeholder="Details" name="skills_detail[]" required>
                         </div>
                      </div>
                   </div>
@@ -142,7 +142,7 @@
                    </div>
                    <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
                       <div class="form-field1">
-                         <select name="qual[]">
+                         <select name="qual[]" required>
                          <option value="">select qualifications</option>
                             @foreach($qual as $val)
                               <option value="{{$val->id}}"> {{$val->qualification}}  </option>
@@ -152,7 +152,7 @@
                    </div>
                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                       <div class="form-field1">
-                        <input type="text" placeholder="Name of Certificate" name="qual_certificate[]">
+                        <input type="text" placeholder="Name of Certificate" name="qual_certificate[]" required>
                       </div>
                    </div>
                  </div>
@@ -174,12 +174,12 @@
                     <div class="col-sm-12 nopadding" id="edu_block">
                       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                            <input type="text" placeholder="Name of Certificate" name="edu_certificate[]">
+                            <input type="text" placeholder="Name of Certificate" name="edu_certificate[]" required>
                         </div>
                       </div>
                       <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                            <input type="text" placeholder="Certification obtained in from which country" name="edu_country[]">
+                            <input type="text" placeholder="Certification obtained in from which country" name="edu_country[]" required>
                         </div>
                       </div>
                     </div>
@@ -204,22 +204,22 @@
                     <div class="col-md-12 nopadding" id="exp_block">                 
                       <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                           <input type="text" placeholder="Employer name" name="exp_employer[]">
+                           <input type="text" placeholder="Employer name" name="exp_employer[]" required>
                         </div>
                      </div>
                       <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                           <input type="text" placeholder="Start Year" name="exp_startYear[]">
+                           <input type="text" placeholder="Start Year" name="exp_startYear[]" required>
                         </div>
                      </div>
                       <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
                         <div class="form-field1">
-                           <input type="text" placeholder="End Year" name="exp_endYear[]">
+                           <input type="text" placeholder="End Year" name="exp_endYear[]" required>
                         </div>
                      </div>
                       <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
                         <div class="form-field1 autocomplete">
-                           <input type="text" id="agency_field" placeholder="Agency" name="exp_agency[]">
+                           <input type="text" id="agency_field" placeholder="Agency" name="exp_agency[]" required>
                         </div>
                      </div>
                    </div>
@@ -257,7 +257,7 @@
                   </div>
                   <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                      <div class="form-field1">
-                        <select name="ss_currency">
+                        <select name="ss_currency" required>
                         <option value="92"> SGD </option>
                            <!-- @foreach($currency as $val)
                            <option value="{{$val->id}}" {{!empty(Auth::user()->startingSalary) && Auth::user()->startingSalary->currency == $val->id ? 'selected' : ''}}> {{$val->code}} </option>
