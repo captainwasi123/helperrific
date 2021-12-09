@@ -70,6 +70,9 @@ use Illuminate\Support\Facades\Route;
 
 				Route::get('/getPrice', 'premiumController@getPrice');
 				Route::post('/subscribe', 'premiumController@subscribe')->name('premium.subscribe');
+
+				Route::get('/status/success', 'premiumController@statusSuccess')->name('premium.status.success');
+				Route::get('/status/failed', 'premiumController@statusFailed')->name('premium.status.failed');
 			});
 
 

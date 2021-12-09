@@ -60,5 +60,18 @@
 </section>
 <!-- The Best Helper Section Ends Here -->
 
-
+@endsection
+@section('addScript')
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session()->has('subscribed'))
+      <script type="text/javascript">
+         $(document).ready(function(){
+            Swal.fire(
+              'Success!',
+              'You have successfull subsribed premium account!',
+              'success'
+            )
+         });
+      </script>
+   @endif
 @endsection

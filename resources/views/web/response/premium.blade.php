@@ -11,7 +11,7 @@
 
  </div>
  <div id="premium_content">
-    <form id="premium_formm" action="{{route('premium.subscribe')}}">
+    <form method="post" action="{{route('premium.subscribe')}}">
        @csrf
        <div class="row">
           <div class="col-md-2"></div>
