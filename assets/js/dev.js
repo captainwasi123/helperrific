@@ -478,6 +478,7 @@ $( "#sendchat" ).submit(function( event ) {
             timeout: 600000,
             success: function (data) {
                 $("textarea[name='message']").val(null);
+                $("input[name='attachment']").val(null);
                 $(".emoji-wysiwyg-editor").html(null);
                 $('#fileAttachName').html(null);
                 $('#talksall').append(data);
