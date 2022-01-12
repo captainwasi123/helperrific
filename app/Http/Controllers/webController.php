@@ -54,6 +54,19 @@ class webController extends Controller
     }
 
     function helpersCat($cat){
+
+        $publicVisit =0;
+        if(Auth::check()){
+            foreach(Auth::user()->favorite as $val){
+                array_push($favors, $val->favor_id);
+            }
+        }else{
+            $ip = RQ::ip();
+            $publicVisit = publicVisit::where('ip_address', $ip)
+                        ->where('date', '>=', date('Y-m-1'))
+                        ->where('date', '<=', date('Y-m-31'))
+                        ->count();
+        }
         $favors = array();
         if(Auth::check()){
             foreach(Auth::user()->favorite as $val){
@@ -78,7 +91,7 @@ class webController extends Controller
                         })
                         ->get();
 
-        return view('web.helpers', ['helpers' => $helpers, 'favors' => $favors, 'filter' => $filter]);
+        return view('web.helpers', ['helpers' => $helpers, 'favors' => $favors, 'filter' => $filter, 'publicVisit' => $publicVisit]);
     }
 
     function helperSearch(Request $request){
