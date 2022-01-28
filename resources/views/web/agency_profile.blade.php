@@ -79,7 +79,7 @@
                          <div class="profile-about-text">
                             <h3> Description </h3>
                             <p> 
-                              {{empty($data->details) ? '-' : $data->details->description}} 
+                              {{empty($data->details->description) ? '-' : $data->details->description}} 
                             </p>
                          </div>
                       </div>

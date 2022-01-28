@@ -38,6 +38,14 @@ a {
     white-space: nowrap;
 }
 
+.cut-text-descip{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
   .listing-info h5 p {
     color: black;
     margin-left: -9px;

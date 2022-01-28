@@ -8,7 +8,7 @@
                              <img alt="listings-thumbnail" src="{{URL::to('/')}}/public/cover_img/{{$data->cover_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/cover-placeholder.jpg';">
                           </div>
                           <div class="listing-info">
-                             <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> {{$data->fname}} {{$data->lname}} </h5>
+                             <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> <p class="cut-text"> {{$data->fname}} {{$data->lname}} </p> </h5>
                           </div>
                           <div class="listing-detail">
                              <table>

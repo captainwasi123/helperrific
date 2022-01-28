@@ -19,9 +19,9 @@
                    <img alt="listings-thumbnail" src="{{URL::to('/')}}/public/cover_img/{{$data->cover_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/cover-placeholder.jpg';">
                 </div>
                 <div class="listing-info">
-                   <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> {{$data->fname}} {{$data->lname}} </h5>
-                   <p title="{{empty($data->details) ? '-' : $data->details->description}}"> 
-                      {{empty($data->details) ? '-' : $data->details->description}} 
+                   <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> <p class="cut-text">  {{$data->fname}} {{$data->lname}} </p> </h5>
+                   <p title="{{empty($data->details->description) ? '-' : $data->details->description}}"> 
+                      {{empty($data->details->description) ? '-' : $data->details->description}} 
                    </p>
                    <h4> <i class="fa fa-star star-onn"> </i> <b class="star-onn"> {{empty($data->avgRating) ? '0.0' : number_format($data->avgRating[0]->aggregate, 1)}}   </b> <span class="col-grey"> ({{count($data->reviews)}})</span> </h4>
                 </div>
@@ -29,11 +29,11 @@
                    <table>
                       <tbody>
                          <tr>
-                            <td> Current Location </td>
+                            <td style="width:45%;"> Current Location </td>
                             <td class="col-blue"> {{!empty($data->details) && !empty($data->details->count) ? $data->details->count->country : '-'}} </td>
                          </tr>
                          <tr>
-                            <td> Current Agency </td>
+                            <td style="width:45%;"> Current Agency </td>
                             <td class="col-blue"> - </td>
                          </tr>
                       </tbody>
@@ -50,7 +50,7 @@
                       </div>
                     @endif
                     @if(!empty($data->startingSalary))
-                      <p> Starting at: &nbsp;&nbsp;&nbsp;<b> {{$data->startingSalary->currency.' '.$data->startingSalary->price.' /'.$data->startingSalary->renewal}} </b> </p>
+                      <p> Starting at: &nbsp;&nbsp;&nbsp;<b> {{$data->startingSalary->curr->symbol.$data->startingSalary->price.' /'.$data->startingSalary->renewal}} </b> </p>
                     @else
                       <p> Starting at: &nbsp;&nbsp;&nbsp;<b>NA</b></p>
                     @endif

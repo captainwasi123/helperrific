@@ -37,7 +37,7 @@
                         <p style="margin-top:10px">
                           <label>Expertise:</label> 
                           @foreach($data->expertise as $val)
-                            {{$val->skills->skill.', '}}
+                            {{$val->skills->skill}}
                           @endforeach
                           @if(count($data->expertise) == '0')
                             N/A

@@ -19,9 +19,9 @@
                    <img alt="listings-thumbnail" src="{{URL::to('/')}}/public/cover_img/{{$data->cover_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/cover-placeholder.jpg';">
                 </div>
                 <div class="listing-info">
-                   <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> {{$data->company}} </h5>
-                   <p title="{{empty($data->details) ? '-' : $data->details->description}}"> 
-                      {{empty($data->details) ? '-' : $data->details->description}} 
+                   <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> <p class="cut-text"> {{$data->company}} </p></h5>
+                   <p title="{{empty($data->details->description) ? '-' : $data->details->description}}"> 
+                      {{empty($data->details->description) ? '-' : $data->details->description}} 
                    </p>
                    <h4> <i class="fa fa-star star-onn"> </i> <b class="star-onn"> {{empty($data->avgRating) ? '0.0' : number_format($data->avgRating[0]->aggregate, 1)}}   </b> <span class="col-grey"> ({{count($data->reviews)}})</span> </h4>
                 </div>
@@ -29,11 +29,11 @@
                    <table>
                       <tbody>
                          <tr>
-                            <td> Agency address </td>
-                            <td> <strong>{{empty($data->details) ? '-' : $data->details->c_address}}</strong></td>
+                            <td style="width:45%;"> Agency address </td>
+                            <td class="cut-text-descip"> <strong>{{empty($data->details->c_address) ? '-' : $data->details->c_address}}</strong></td>
                          </tr>
                          <tr>
-                            <td> No of Available Helper </td>
+                            <td style="width:45%;"> No of Available Helper </td>
                             <td class="col-blue"> <input type="number" value="2" readonly="" name=""> </td>
                          </tr>
                       </tbody>
