@@ -60,7 +60,7 @@
                             <p style="margin-top:10px">
                               <label>Expertise:</label> 
                               @foreach(Auth::user()->expertise as $val)
-                                {{$val->skills->skill.', '}}
+                                {{$val->skills->skill}}
                               @endforeach
                               @if(count(Auth::user()->expertise) == '0')
                                 N/A
@@ -153,6 +153,7 @@
                               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                  <div class="profile-about-text">
                                     <h3> Experience </h3>
+                                   
                                     @foreach(Auth::user()->experience as $val)
                                       <p> 
                                         <span> Name:{{$val->employer}} </span> 

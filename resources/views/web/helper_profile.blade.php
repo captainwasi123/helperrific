@@ -117,14 +117,24 @@
                         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                            <div class="profile-about-text">
                               <h3> Experience </h3>
-                              @foreach($data->experience as $val)
-                                <p> 
-                                  <span> Name:{{$val->employer}} </span> 
+                              
+                              @foreach($data->experience as $val)                               
+                                <p>                                     
+                                    @if(!empty($val->employer)) 
+                                  <span> Name:{{$val->employer}} </span>
+                                    @endif 
+                                    @if(!empty($val->start_year)) 
                                   <span> Start Year: {{$val->start_year}} </span>
+                                    @endif 
+                                    @if(!empty($val->end_year))
                                   <span> End Year: {{$val->end_year}} </span>
+                                    @endif 
+                                    @if(!empty($val->agency))
                                   <span> Agency: {{$val->agency}} </span>
+                                    @endif 
                                   <br>
                                 </p>
+                                 
                               @endforeach
                            </div>
                         </div>

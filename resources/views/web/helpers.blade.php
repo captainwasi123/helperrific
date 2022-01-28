@@ -88,7 +88,7 @@
                              <img alt="listings-thumbnail" src="{{URL::to('/')}}/public/cover_img/{{$data->cover_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/cover-placeholder.jpg';">
                           </div>
                           <div class="listing-info">
-                             <h5> <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"> {{$data->fname}} {{$data->lname}} </h5>
+                             <h5 > <img alt="user-profile-picture" src="{{URL::to('/')}}/public/profile_img/{{$data->profile_img}}" onerror="this.onerror=null;this.src='{{URL::to('/')}}/public/user-placeholder.jpg';"><p class="cut-text"> {{$data->fname}} {{$data->lname}} </p> </h5>
                              <p title="{{empty($data->details) ? '-' : $data->details->description}}"> 
                                 {{empty($data->details->description) ? '-' : $data->details->description}} 
                              </p>
@@ -98,11 +98,11 @@
                              <table>
                                 <tbody>
                                    <tr>
-                                      <td> Current Location </td>
+                                      <td style="width:45%;"> Current Location </td>
                                       <td class="col-blue"> {{!empty($data->details) && !empty($data->details->count) ? $data->details->count->country : '-'}} </td>
                                    </tr>
                                    <tr>
-                                      <td> Current Agency </td>
+                                      <td style="width:45%;"> Current Agency </td>
                                       <td class="col-blue"> - </td>
                                    </tr>
                                 </tbody>

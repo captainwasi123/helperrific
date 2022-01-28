@@ -30,6 +30,23 @@ a {
 }
 
 
+.cut-text { 
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 160px; 
+    height: 1.2em; 
+    white-space: nowrap;
+}
+
+  .listing-info h5 p {
+    color: black;
+    margin-left: -9px;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    position: relative;
+    margin-bottom: 18px;
+    margin-top: 15px;
+}
 
 .col-white {
 	color:white !important;
@@ -1101,7 +1118,7 @@ section.breadcrumb-custom ul li a {
     margin: 0px;
     float: right;
     color: black;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.3px;
 }
