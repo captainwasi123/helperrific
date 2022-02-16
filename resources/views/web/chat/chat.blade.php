@@ -15,8 +15,6 @@
                       <option value="1"> All Conversations </option>
                         <option value="2"> Unread </option>
                         <option value="3"> Starred </option>
-                        <option value="4"> Archived </option>
-                        <option value="5"> Follow-up </option>
                   </select>
                </div>
                   <!-- <h3> All Conversations  <button class="chat-toggle"> <i class="fa fa-angle-down"> </i> </button> </h3> -->
