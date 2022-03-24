@@ -28,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 			Route::get('/employer/detail/{id}/{name}', 'webController@employerDetail');
 
+			Route::get('/privacy', 'webController@privacy');
+			Route::get('/terms', 'webController@terms');
+
 	//maintenance
 	Route::get('/maintenance','maintenanceController@index')->name('maintenance');
 

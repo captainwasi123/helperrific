@@ -120,6 +120,8 @@
                   <li> <a href="javascript:void(0)" class="open-login"> Sign in  </a></li>
                   <li> <a href="javascript:void(0)" class="open-join"> Join For free </a></li>
                   <li> <a href="javascript:void(0)" class="open-enquiry"> Send us Enquiry </a></li>
+                  <li> <a href="{{URL::to('/privacy')}}" class=""> Privacy & Policy </a></li>
+                  <li> <a href="{{URL::to('/terms')}}" class=""> Terms & Conditions </a></li>
                </ul>
             </div>
          </div>

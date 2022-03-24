@@ -472,4 +472,13 @@ class webController extends Controller
             return view('web.maintenance');
         }
     }
+
+    function privacy(){
+        return view('web.privacy');
+    }
+
+    function terms(){
+        return view('web.terms');
+    }
+
 }
